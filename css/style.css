@@ -1632,7 +1632,7 @@ img {
   }
 
   .content-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: minmax(0, 1fr) !important;
     gap: 16px !important; /* 卡片之间间距 16px */
   }
   
@@ -1643,7 +1643,7 @@ img {
   }
   
   .card-content-layout {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: minmax(0, 1fr) !important;
     gap: 12px !important;
   }
   
@@ -1682,7 +1682,7 @@ img {
   }
   
   .features-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 16px !important; /* 卡片之间间距 16px */
   }
   
@@ -1719,7 +1719,7 @@ img {
   }
   
   .resource-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 16px !important; /* 统一卡片间距为 16px */
   }
   
@@ -1857,11 +1857,11 @@ img {
   
   /* 网格转单列 */
   .features-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: minmax(0, 1fr) !important;
   }
   
   .resource-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: minmax(0, 1fr) !important;
   }
   
   .footer-links {
