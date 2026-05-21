@@ -1438,6 +1438,9 @@ img {
   .first-screen {
     padding: 16px 0 0 0 !important; /* 减少红色头部与轮播图之间的留白到16px */
   }
+  .first-screen .container {
+    display: block !important;
+  }
   
   /* 轮播图宽高比例控制，增加高度范围限制 */
   .carousel-wrapper {
@@ -1550,12 +1553,10 @@ img {
   }
   
   .recommend-item {
-    padding: 12px 0 !important; /* 紧凑样式 */
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    gap: 10px !important;
-    min-width: 0 !important; /* 防止溢出 */
+    padding: 12px 0 12px 0 !important;
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
   }
   
   .recommend-item.highlight {
@@ -1563,20 +1564,26 @@ img {
   }
   
   .recommend-item-link {
-    display: block !important;
+    display: inline-block !important;
     font-size: 14px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    flex: 1 !important;
+    width: calc(100% - 50px) !important;
+    max-width: calc(100% - 50px) !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
-    min-width: 0 !important; /* 关键：防止 flexbox 溢出 */
+    vertical-align: middle !important;
   }
   
   .recommend-item-date {
     font-size: 12px !important;
-    flex-shrink: 0 !important;
+    position: absolute !important;
+    right: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+  
+  .recommend-item.highlight .recommend-item-date {
+    right: 12px !important;
   }
 
   /* 专题学习横幅自适应与压缩 */
@@ -1636,11 +1643,11 @@ img {
   }
 
   .content-grid {
-    grid-template-columns: minmax(0, 1fr) !important;
-    gap: 16px !important; /* 卡片之间间距 16px */
+    display: block !important;
   }
   
   .card-module {
+    margin-bottom: 16px !important;
     padding: 16px !important;
     border-radius: 12px !important;
     box-shadow: 0 4px 8px rgba(184, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.02) !important; /* 减弱阴影 */
@@ -1650,11 +1657,11 @@ img {
   }
   
   .card-content-layout {
-    grid-template-columns: minmax(0, 1fr) !important;
-    gap: 12px !important;
+    display: block !important;
   }
   
   .small-image-placeholder {
+    margin-bottom: 12px !important;
     height: 110px !important;
   }
   
@@ -1664,23 +1671,27 @@ img {
   
   .card-list-item {
     font-size: 14px !important;
-    gap: 10px !important;
-    min-width: 0 !important; /* 防止溢出 */
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    padding: 6px 0 !important;
   }
   
   .card-list-link {
-    display: block !important;
-    flex: 1 !important;
-    width: 100% !important;
-    max-width: 100% !important;
+    display: inline-block !important;
+    width: calc(100% - 50px) !important;
+    max-width: calc(100% - 50px) !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
-    min-width: 0 !important; /* 关键：防止 flexbox 溢出 */
+    vertical-align: middle !important;
   }
   
   .card-list-date {
-    flex-shrink: 0 !important;
+    position: absolute !important;
+    right: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
   }
 
   /* 平台特色展示区 */
