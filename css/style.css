@@ -1521,6 +1521,30 @@ img {
   .section-title-bar h3::after {
     bottom: -10px !important; /* 适配 padding-bottom */
   }
+
+  .card-module .section-title-bar h3::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 3px !important;
+    left: 0 !important;
+    width: 4px !important;
+    height: 20px !important;
+    background-color: var(--primary-red) !important;
+    bottom: auto !important;
+    border-radius: var(--radius-sm) !important;
+  }
+
+  .card-module .section-title-bar h3::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 3px !important;
+    left: 6px !important;
+    width: 4px !important;
+    height: 20px !important;
+    background-color: var(--cau-green) !important;
+    bottom: auto !important;
+    border-radius: var(--radius-sm) !important;
+  }
   
   .recommend-item {
     padding: 12px 0 !important; /* 紧凑样式 */
