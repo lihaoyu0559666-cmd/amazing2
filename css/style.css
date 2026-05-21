@@ -582,10 +582,10 @@ img {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 82%;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  flex: 1;
+  min-width: 0;
+  padding-right: 15px;
+  display: block;
 }
 
 /* 列表前小红方块 */
@@ -593,8 +593,10 @@ img {
   content: '■';
   color: var(--primary-red);
   font-size: 10px;
-  flex-shrink: 0;
   opacity: 0.7;
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .recommend-item-link:hover {
@@ -839,6 +841,7 @@ img {
   flex-direction: column;
   gap: 12px;
   justify-content: center;
+  min-width: 0;
 }
 
 .card-list-item {
@@ -853,17 +856,19 @@ img {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 78%;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  margin-right: 15px;
+  display: block;
 }
 
 .card-list-link::before {
-  content: '▪';
+  content: '▶';
   color: var(--text-muted);
   font-size: 10px;
   opacity: 0.7;
+  margin-right: 8px;
+  display: inline-block;
 }
 
 /* 不同模块hover链接色 */
@@ -876,6 +881,7 @@ img {
   font-size: 12.5px;
   color: var(--text-muted);
   font-weight: 500;
+  flex-shrink: 0;
 }
 
 /* 7. 平台特色展示区美化 */
