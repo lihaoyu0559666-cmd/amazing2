@@ -1195,7 +1195,7 @@ img {
   100% { transform: scale(1); opacity: 1; }
 }
 
-/* 响应式设计 */
+/* 响应式与移动端适配优化 */
 @media (max-width: 992px) {
   .first-screen .container {
     grid-template-columns: 1fr;
@@ -1233,474 +1233,610 @@ img {
 }
 
 @media (max-width: 768px) {
-  /* 顶部细小信息栏 */
+  /* 页面全局与容器调整，防止横向溢出 */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    background-color: #FFF8EE !important; /* 柔和暖色纸张背景 */
+  }
+  
+  *, *::before, *::after {
+    box-sizing: border-box !important;
+  }
+
+  .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* 顶部细排信息栏压缩 */
   .top-info-bar {
-    font-size: 11px;
-    padding: 6px 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 11px !important;
+    padding: 6px 0 !important;
+    overflow: hidden !important;
   }
   
   .top-info-bar .container {
-    flex-direction: column;
-    gap: 4px;
-    align-items: center;
-    text-align: center;
+    flex-direction: column !important;
+    gap: 4px !important;
+    align-items: center !important;
+    text-align: center !important;
   }
 
   .top-info-bar .left-info {
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
   }
 
-  /* 顶部主视觉红色横幅区域 */
+  .top-info-bar .left-info span {
+    white-space: normal !important;
+    display: inline-block !important;
+  }
+
+  .top-info-bar .right-info {
+    white-space: normal !important;
+    display: inline-block !important;
+  }
+
+  /* 顶部红色主视觉区完整铺满 */
   .main-header {
-    padding: 16px 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important; /* 平铺无圆角，符合经典移动门户风格 */
+    padding: 20px 16px 16px !important; /* 压缩内边距 */
+    background: linear-gradient(135deg, var(--primary-red) 0%, #A00000 100%) !important;
   }
   
   .main-header .container {
-    flex-direction: column;
-    gap: 16px;
-    align-items: center;
-    text-align: center;
+    display: block !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
   
   .header-logo-area {
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    align-items: center !important;
+    text-align: center !important;
+    margin-bottom: 12px !important;
   }
   
   .logo-circle {
-    width: 48px;
-    height: 48px;
+    width: 48px !important;
+    height: 48px !important;
   }
   
   .logo-circle svg {
-    width: 26px;
-    height: 26px;
+    width: 26px !important;
+    height: 26px !important;
   }
   
+  /* 平台标题限制2行内 */
   .platform-logo-title {
-    font-size: 20px;
-    letter-spacing: 1px;
+    font-size: 26px !important;
+    line-height: 1.35 !important;
+    font-weight: 800 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) !important;
+    text-align: center !important;
+    word-break: break-all !important;
+    max-width: 100% !important;
   }
   
-  /* 手机端隐藏副标语 */
+  /* 平台标语字号缩小 */
   .platform-slogan {
-    display: none;
+    display: block !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    max-width: 90% !important;
+    margin: 4px auto 0 !important;
+    letter-spacing: 1px !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    text-align: center !important;
+    word-break: break-all !important;
   }
   
-  /* 搜索框与学习入口适配 */
+  /* 搜索框与学习入口按钮适配 */
   .header-action-area {
-    width: 100%;
-    justify-content: center;
-    gap: 12px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin-top: 0 !important; /* 压缩间距 */
   }
   
-  /* 搜索框在手机端改为较短的搜索按钮或搜索图标样式 */
+  /* 搜索框在手机端拉伸至 100% */
   .search-box {
-    width: auto;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 44px !important;
+    display: flex !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border: 2px solid var(--accent-gold) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 2px 2px 2px 12px !important;
+    box-shadow: none !important;
   }
   
   .search-box input {
-    display: none; /* 隐藏输入框 */
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    font-size: 14px !important;
   }
   
   .search-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 2px solid var(--accent-gold);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    width: 48px !important;
+    height: 36px !important;
+    border-radius: var(--radius-sm) !important;
+    box-shadow: none !important;
   }
   
+  /* “学习入口”按钮缩小，与搜索框间距为 12px */
   .header-btn-link {
-    padding: 10px 16px;
-    height: 40px;
-    font-size: 13px;
-    border-radius: 20px; /* 圆角按钮 */
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 42px !important;
+    width: auto !important;
+    padding: 0 24px !important;
+    font-size: 14px !important;
+    border-radius: 21px !important;
   }
 
-  /* 导航栏适配：横向滚动标签栏 */
+  /* 导航栏适配：一行五等分，防止换行 */
   .nav-bar {
-    border-bottom: 3px solid var(--cau-green);
+    width: 100% !important;
+    max-width: 100% !important;
+    border-bottom: 3px solid var(--cau-green) !important;
+    background-color: var(--deep-red) !important;
   }
   
   .nav-bar .container {
-    padding: 0; /* 贴紧屏幕边缘 */
-    overflow: hidden;
+    display: block !important; /* 强制覆盖原本的 flex */
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
   
   .nav-menu {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    width: 100%;
-    scrollbar-width: none; /* Firefox */
-  }
-  
-  .nav-menu::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important; /* 强制5列且允许自收缩 */
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
   }
   
   .nav-menu-item {
-    flex: 0 0 auto;
+    width: 100% !important;
+    text-align: center !important;
+    flex: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
   }
   
   .nav-menu-item a {
-    padding: 12px 18px; /* 左右内边距不小于 16px */
-    font-size: 15px;
-    white-space: nowrap;
+    display: block !important;
+    padding: 14px 0 !important;
+    font-size: 15px !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+    width: 100% !important;
   }
   
-  /* 首页首屏 */
+  /* 首屏区域间距优化 */
   .first-screen {
-    padding: 15px 0;
+    padding: 16px 0 0 0 !important; /* 减少红色头部与轮播图之间的留白到16px */
   }
   
+  /* 轮播图宽高比例控制，增加高度范围限制 */
   .carousel-wrapper {
-    height: auto;
-    aspect-ratio: 16 / 9; /* 比例控制在 16:9 左右 */
-    border-radius: var(--radius-md);
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+    min-height: 230px !important; /* 最小高度230px，给图字留出充裕空间 */
+    max-height: 280px !important; /* 最大高度280px，防止高度占满首屏 */
+    border-radius: 12px !important;
+    box-shadow: var(--shadow-md) !important;
+    margin-bottom: 0 !important;
   }
   
   /* 轮播图控制项缩小与定位 */
   .carousel-btn {
-    width: 32px;
-    height: 32px;
+    width: 38px !important;
+    height: 38px !important;
+    background-color: rgba(0, 0, 0, 0.3) !important; /* 略微提高透明度 */
   }
   
   .carousel-btn svg {
-    width: 16px;
-    height: 16px;
+    width: 18px !important;
+    height: 18px !important;
   }
   
-  .carousel-btn.prev { left: 8px; }
-  .carousel-btn.next { right: 8px; }
+  .carousel-btn.prev { left: 10px !important; }
+  .carousel-btn.next { right: 10px !important; }
   
   .carousel-dots {
-    right: 50%;
-    transform: translateX(50%);
-    bottom: 10px;
-    gap: 6px;
-  }
-  
-  .dot {
-    width: 8px;
-    height: 8px;
-  }
-  
-  .dot.active {
-    width: 20px;
+    right: 50% !important;
+    transform: translateX(50%) !important;
+    bottom: 12px !important;
+    gap: 6px !important;
   }
   
   /* 轮播标题覆盖层限制行数 */
   .carousel-caption {
-    padding: 30px 16px 16px;
+    padding: 24px 16px 16px !important;
   }
   
   .carousel-caption h2 {
-    font-size: 15px;
-    margin-bottom: 4px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* 最多显示两行 */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
+    font-size: 16px !important;
+    margin-bottom: 4px !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: normal !important;
+    line-height: 1.4 !important;
   }
   
-  /* 隐藏轮播副标题以保证空间 */
   .carousel-caption p {
-    display: none;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+    margin-top: 4px !important;
   }
   
-  .carousel-caption .caption-tag {
-    padding: 1px 6px;
-    font-size: 10px;
-    margin-bottom: 4px;
-  }
-
-  /* 重点推荐列表 */
+  /* 重点推荐卡片左右边距与轮播图对齐 */
   .recommend-list-wrapper {
-    padding: 16px;
-    margin-top: 10px;
+    padding: 18px !important;
+    margin-top: 16px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 8px rgba(184, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.02) !important;
   }
   
   .section-title-bar {
-    margin-bottom: 12px;
-    padding-bottom: 8px;
+    margin-bottom: 14px !important; /* 标题与内容间距控制在 12px—16px */
+    padding-bottom: 8px !important;
   }
   
   .section-title-bar h3 {
-    font-size: 18px;
+    font-size: 22px !important; /* 调整为 22px 左右 */
+  }
+
+  .section-title-bar h3::after {
+    bottom: -10px !important; /* 适配 padding-bottom */
+  }
+  
+  .recommend-item {
+    padding: 12px 0 !important; /* 紧凑样式 */
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 10px !important;
+    min-width: 0 !important; /* 防止溢出 */
+  }
+  
+  .recommend-item.highlight {
+    padding: 10px 12px !important;
   }
   
   .recommend-item-link {
-    font-size: 14px;
-    width: 80%;
+    font-size: 14px !important;
+    width: auto !important;
+    flex: 1 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    min-width: 0 !important; /* 关键：防止 flexbox 溢出 */
+  }
+  
+  .recommend-item-date {
+    font-size: 12px !important;
+    flex-shrink: 0 !important;
   }
 
-  /* 专题学习横幅适配 */
+  /* 专题学习横幅自适应与压缩 */
   .special-learning-banner {
-    padding: 10px 0 15px 0;
+    padding: 24px 0 !important; /* section 上下间距 */
   }
   
   .banner-card {
-    padding: 20px 16px;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 16px;
+    padding: 20px 16px !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 16px !important;
+    border-radius: 12px !important;
+    box-shadow: none !important; /* 减弱阴影 */
+    border: 1px solid var(--accent-gold) !important;
   }
   
   .banner-left-info {
-    max-width: 100%;
+    max-width: 100% !important;
   }
   
   .banner-tag {
-    margin-bottom: 8px;
+    margin-bottom: 8px !important;
   }
   
   .banner-title {
-    font-size: 20px;
+    font-size: 20px !important;
+    line-height: 1.35 !important;
   }
   
   .banner-desc {
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
   }
   
   .banner-right-actions {
-    width: 100%;
-    justify-content: center;
-    gap: 8px;
+    width: 100% !important;
+    justify-content: center !important;
+    gap: 8px !important;
   }
   
   .banner-action-btn {
-    flex: 1 1 calc(33.33% - 8px);
-    min-width: 80px;
-    padding: 10px 8px;
-    font-size: 13px;
-    text-align: center;
+    flex: 1 1 calc(33.33% - 8px) !important;
+    min-width: 80px !important;
+    padding: 10px 8px !important;
+    font-size: 13px !important;
   }
   
-  /* 减少背景纹理干扰 */
   .banner-pattern {
-    opacity: 0.3;
+    opacity: 0.2 !important;
   }
 
   /* 四个内容模块适配 */
+  .content-grid-section {
+    padding: 24px 0 !important; /* section 上下间距 */
+  }
+
   .content-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important; /* 卡片之间间距 16px */
   }
   
   .card-module {
-    padding: 16px;
+    padding: 16px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 8px rgba(184, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.02) !important; /* 减弱阴影 */
   }
   
   .card-content-layout {
-    grid-template-columns: 1fr; /* 图片在上列表在下 */
-    gap: 12px;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
   }
   
   .small-image-placeholder {
-    height: 110px;
+    height: 110px !important;
   }
   
   .card-list {
-    gap: 8px;
+    gap: 8px !important;
   }
   
   .card-list-item {
-    font-size: 14px;
-    gap: 10px;
+    font-size: 14px !important;
+    gap: 10px !important;
+    min-width: 0 !important; /* 防止溢出 */
   }
   
   .card-list-link {
-    flex: 1;
-    width: auto; /* 覆盖 78% */
+    flex: 1 !important;
+    width: auto !important;
+    min-width: 0 !important; /* 关键：防止 flexbox 溢出 */
   }
   
   .card-list-date {
-    flex-shrink: 0;
+    flex-shrink: 0 !important;
   }
 
   /* 平台特色展示区 */
   .features-section {
-    padding: 30px 0;
-    margin: 20px 0;
+    padding: 24px 0 !important; /* section 上下间距 */
+    margin: 24px 0 !important;
   }
   
   .features-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important; /* 卡片之间间距 16px */
   }
   
   .feature-card {
-    padding: 20px 12px;
-    box-shadow: none; /* 减弱阴影，避免混乱 */
-    border-color: #EEECE7;
+    padding: 20px 12px !important;
+    box-shadow: none !important; /* 去除卡片强阴影 */
+    border-color: #EEECE7 !important;
+    border-radius: 12px !important;
   }
   
   .feature-icon-wrapper {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 12px;
+    width: 48px !important;
+    height: 48px !important;
+    margin-bottom: 12px !important;
   }
   
   .feature-icon-wrapper svg {
-    width: 24px;
-    height: 24px;
+    width: 24px !important;
+    height: 24px !important;
   }
   
   .feature-card h4 {
-    font-size: 15px;
+    font-size: 15px !important;
   }
   
   .feature-card p {
-    font-size: 12px;
-    line-height: 1.5;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
   }
 
   /* 学习资源入口 */
   .resource-portal-section {
-    padding: 15px 0 30px 0;
+    padding: 24px 0 32px 0 !important; /* section 上下间距 */
   }
   
   .resource-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important; /* 统一卡片间距为 16px */
   }
   
   .resource-card {
-    padding: 16px;
-    min-height: auto;
+    padding: 16px !important;
+    min-height: auto !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 8px rgba(184, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.02) !important; /* 减弱阴影 */
   }
   
   .resource-header {
-    gap: 8px;
-    margin-bottom: 8px;
+    gap: 8px !important;
+    margin-bottom: 8px !important;
   }
   
   .resource-logo-box {
-    width: 32px;
-    height: 32px;
-    font-size: 11px;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 11px !important;
   }
   
   .resource-header h4 {
-    font-size: 13.5px;
+    font-size: 13.5px !important;
   }
   
   .resource-desc {
-    font-size: 12px;
-    margin-bottom: 12px;
+    font-size: 12px !important;
+    margin-bottom: 12px !important;
   }
   
   .resource-link-btn {
-    padding: 10px 0; /* 确保按钮高度不低于 40px */
-    font-size: 13px;
+    padding: 10px 0 !important; /* 确保按钮高度达 40px 以上，提高移动端点按体验 */
+    font-size: 13px !important;
   }
 
-  /* 页脚适配 */
+  /* 页脚适配与文字居中 */
   .site-footer {
-    padding: 30px 0 20px 0;
-    text-align: center;
+    padding: 30px 0 20px 0 !important;
+    text-align: center !important;
   }
   
   .footer-top {
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    padding-bottom: 20px;
-    margin-bottom: 16px;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 24px !important;
+    padding-bottom: 20px !important;
+    margin-bottom: 16px !important;
   }
   
   .footer-info h4 {
-    font-size: 18px;
+    font-size: 18px !important;
   }
   
   .footer-info p {
-    font-size: 12.5px;
-    max-width: 100%;
+    font-size: 12.5px !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
   }
   
   .footer-links {
-    gap: 30px;
-    width: 100%;
-    justify-content: space-around;
+    gap: 30px !important;
+    width: 100% !important;
+    justify-content: space-around !important;
   }
   
   .footer-link-group h5::after {
-    left: 50%;
-    transform: translateX(-50%);
+    left: 50% !important;
+    transform: translateX(-50%) !important;
   }
   
   .footer-bottom {
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
+    flex-direction: column !important;
+    gap: 10px !important;
+    align-items: center !important;
   }
   
   .footer-bottom-left {
-    align-items: center;
-    gap: 8px;
+    align-items: center !important;
+    gap: 8px !important;
   }
   
   .footer-bottom-right {
-    margin-top: 4px;
+    margin-top: 4px !important;
   }
 }
 
 @media (max-width: 480px) {
+  /* 小屏手机精简顶栏 */
   .top-info-bar .left-info span:not(.badge) {
-    display: none; /* 小屏手机隐藏冗长的欢迎词，只留徽章和日期 */
+    display: none !important; /* 隐藏长欢迎语，仅保留徽章与日期 */
   }
   
   .platform-logo-title {
-    font-size: 18px;
+    font-size: 22px !important;
   }
   
-  /* 学习入口按钮与搜索图标的微调 */
+  .platform-slogan {
+    font-size: 13px !important;
+  }
+  
+  .nav-menu-item a {
+    font-size: 14px !important;
+  }
+  
   .header-btn-link {
-    padding: 8px 12px;
-    font-size: 12px;
+    padding: 8px 16px !important;
+    font-size: 13px !important;
   }
   
-  /* 轮播图比例微调 */
+  /* 轮播图使用 4:3 比例展示 */
   .carousel-wrapper {
-    aspect-ratio: 4 / 3; /* 小屏上用 4:3 看起来更宽裕，防止文字被图片底色挤满 */
+    aspect-ratio: 4 / 3 !important;
+    min-height: 220px !important;
+    max-height: 250px !important;
   }
-
-  /* 专题学习按钮在极小屏幕下垂直排列 */
+  
+  .carousel-caption h2 {
+    font-size: 14px !important;
+  }
+  
+  .section-title-bar h3 {
+    font-size: 18px !important;
+  }
+  
+  /* 专题学习按钮在极窄屏下垂直堆叠 */
   .banner-right-actions {
-    flex-direction: column;
-    gap: 6px;
+    flex-direction: column !important;
+    gap: 6px !important;
   }
   
   .banner-action-btn {
-    width: 100%;
-    margin: 0;
-  }
-
-  /* 平台特色转为单列 */
-  .features-grid {
-    grid-template-columns: 1fr;
+    width: 100% !important;
+    margin: 0 !important;
   }
   
-  /* 学习资源入口转为单列 */
+  /* 网格转单列 */
+  .features-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
   .resource-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
   
   .footer-links {
-    flex-direction: column;
-    gap: 20px;
+    flex-direction: column !important;
+    gap: 20px !important;
   }
 }
