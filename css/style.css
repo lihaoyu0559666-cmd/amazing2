@@ -1196,81 +1196,511 @@ img {
 }
 
 /* 响应式设计 */
-@media (max-width: 1024px) {
+@media (max-width: 992px) {
   .first-screen .container {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
+  
+  .carousel-wrapper {
+    height: 360px;
+  }
+  
   .content-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
+  
   .banner-card {
     flex-direction: column;
     gap: 20px;
     align-items: flex-start;
   }
+  
   .banner-left-info {
     max-width: 100%;
   }
+  
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
+  
   .resource-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 }
 
 @media (max-width: 768px) {
+  /* 顶部细小信息栏 */
   .top-info-bar {
-    font-size: 12px;
+    font-size: 11px;
+    padding: 6px 0;
   }
+  
   .top-info-bar .container {
     flex-direction: column;
-    gap: 6px;
-    align-items: flex-start;
+    gap: 4px;
+    align-items: center;
+    text-align: center;
   }
+
+  .top-info-bar .left-info {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* 顶部主视觉红色横幅区域 */
+  .main-header {
+    padding: 16px 0;
+  }
+  
   .main-header .container {
     flex-direction: column;
-    gap: 20px;
-    align-items: flex-start;
+    gap: 16px;
+    align-items: center;
+    text-align: center;
   }
+  
+  .header-logo-area {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .logo-circle {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .logo-circle svg {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .platform-logo-title {
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+  
+  /* 手机端隐藏副标语 */
+  .platform-slogan {
+    display: none;
+  }
+  
+  /* 搜索框与学习入口适配 */
   .header-action-area {
     width: 100%;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    justify-content: center;
     gap: 12px;
   }
+  
+  /* 搜索框在手机端改为较短的搜索按钮或搜索图标样式 */
   .search-box {
-    width: 100%;
+    width: auto;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
   }
+  
+  .search-box input {
+    display: none; /* 隐藏输入框 */
+  }
+  
+  .search-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-gold);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+  
+  .header-btn-link {
+    padding: 10px 16px;
+    height: 40px;
+    font-size: 13px;
+    border-radius: 20px; /* 圆角按钮 */
+  }
+
+  /* 导航栏适配：横向滚动标签栏 */
+  .nav-bar {
+    border-bottom: 3px solid var(--cau-green);
+  }
+  
   .nav-bar .container {
-    flex-direction: column;
-    align-items: flex-start;
+    padding: 0; /* 贴紧屏幕边缘 */
+    overflow: hidden;
   }
+  
   .nav-menu {
-    flex-wrap: wrap;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     width: 100%;
+    scrollbar-width: none; /* Firefox */
   }
+  
+  .nav-menu::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+  
+  .nav-menu-item {
+    flex: 0 0 auto;
+  }
+  
   .nav-menu-item a {
-    padding: 12px 20px;
+    padding: 12px 18px; /* 左右内边距不小于 16px */
     font-size: 15px;
+    white-space: nowrap;
   }
+  
+  /* 首页首屏 */
+  .first-screen {
+    padding: 15px 0;
+  }
+  
   .carousel-wrapper {
-    height: 320px;
+    height: auto;
+    aspect-ratio: 16 / 9; /* 比例控制在 16:9 左右 */
+    border-radius: var(--radius-md);
   }
+  
+  /* 轮播图控制项缩小与定位 */
+  .carousel-btn {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .carousel-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .carousel-btn.prev { left: 8px; }
+  .carousel-btn.next { right: 8px; }
+  
+  .carousel-dots {
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 10px;
+    gap: 6px;
+  }
+  
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .dot.active {
+    width: 20px;
+  }
+  
+  /* 轮播标题覆盖层限制行数 */
+  .carousel-caption {
+    padding: 30px 16px 16px;
+  }
+  
   .carousel-caption h2 {
+    font-size: 15px;
+    margin-bottom: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 最多显示两行 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+  }
+  
+  /* 隐藏轮播副标题以保证空间 */
+  .carousel-caption p {
+    display: none;
+  }
+  
+  .carousel-caption .caption-tag {
+    padding: 1px 6px;
+    font-size: 10px;
+    margin-bottom: 4px;
+  }
+
+  /* 重点推荐列表 */
+  .recommend-list-wrapper {
+    padding: 16px;
+    margin-top: 10px;
+  }
+  
+  .section-title-bar {
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+  }
+  
+  .section-title-bar h3 {
     font-size: 18px;
   }
-  .card-content-layout {
-    grid-template-columns: 1fr;
+  
+  .recommend-item-link {
+    font-size: 14px;
+    width: 80%;
   }
+
+  /* 专题学习横幅适配 */
+  .special-learning-banner {
+    padding: 10px 0 15px 0;
+  }
+  
+  .banner-card {
+    padding: 20px 16px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+  
+  .banner-left-info {
+    max-width: 100%;
+  }
+  
+  .banner-tag {
+    margin-bottom: 8px;
+  }
+  
+  .banner-title {
+    font-size: 20px;
+  }
+  
+  .banner-desc {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  
+  .banner-right-actions {
+    width: 100%;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .banner-action-btn {
+    flex: 1 1 calc(33.33% - 8px);
+    min-width: 80px;
+    padding: 10px 8px;
+    font-size: 13px;
+    text-align: center;
+  }
+  
+  /* 减少背景纹理干扰 */
+  .banner-pattern {
+    opacity: 0.3;
+  }
+
+  /* 四个内容模块适配 */
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .card-module {
+    padding: 16px;
+  }
+  
+  .card-content-layout {
+    grid-template-columns: 1fr; /* 图片在上列表在下 */
+    gap: 12px;
+  }
+  
+  .small-image-placeholder {
+    height: 110px;
+  }
+  
+  .card-list {
+    gap: 8px;
+  }
+  
+  .card-list-item {
+    font-size: 14px;
+    gap: 10px;
+  }
+  
+  .card-list-link {
+    flex: 1;
+    width: auto; /* 覆盖 78% */
+  }
+  
+  .card-list-date {
+    flex-shrink: 0;
+  }
+
+  /* 平台特色展示区 */
+  .features-section {
+    padding: 30px 0;
+    margin: 20px 0;
+  }
+  
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  .feature-card {
+    padding: 20px 12px;
+    box-shadow: none; /* 减弱阴影，避免混乱 */
+    border-color: #EEECE7;
+  }
+  
+  .feature-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+  }
+  
+  .feature-icon-wrapper svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .feature-card h4 {
+    font-size: 15px;
+  }
+  
+  .feature-card p {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  /* 学习资源入口 */
+  .resource-portal-section {
+    padding: 15px 0 30px 0;
+  }
+  
+  .resource-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .resource-card {
+    padding: 16px;
+    min-height: auto;
+  }
+  
+  .resource-header {
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .resource-logo-box {
+    width: 32px;
+    height: 32px;
+    font-size: 11px;
+  }
+  
+  .resource-header h4 {
+    font-size: 13.5px;
+  }
+  
+  .resource-desc {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .resource-link-btn {
+    padding: 10px 0; /* 确保按钮高度不低于 40px */
+    font-size: 13px;
+  }
+
+  /* 页脚适配 */
+  .site-footer {
+    padding: 30px 0 20px 0;
+    text-align: center;
+  }
+  
+  .footer-top {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding-bottom: 20px;
+    margin-bottom: 16px;
+  }
+  
+  .footer-info h4 {
+    font-size: 18px;
+  }
+  
+  .footer-info p {
+    font-size: 12.5px;
+    max-width: 100%;
+  }
+  
+  .footer-links {
+    gap: 30px;
+    width: 100%;
+    justify-content: space-around;
+  }
+  
+  .footer-link-group h5::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .footer-bottom-left {
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .footer-bottom-right {
+    margin-top: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-info-bar .left-info span:not(.badge) {
+    display: none; /* 小屏手机隐藏冗长的欢迎词，只留徽章和日期 */
+  }
+  
+  .platform-logo-title {
+    font-size: 18px;
+  }
+  
+  /* 学习入口按钮与搜索图标的微调 */
+  .header-btn-link {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  /* 轮播图比例微调 */
+  .carousel-wrapper {
+    aspect-ratio: 4 / 3; /* 小屏上用 4:3 看起来更宽裕，防止文字被图片底色挤满 */
+  }
+
+  /* 专题学习按钮在极小屏幕下垂直排列 */
+  .banner-right-actions {
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .banner-action-btn {
+    width: 100%;
+    margin: 0;
+  }
+
+  /* 平台特色转为单列 */
   .features-grid {
     grid-template-columns: 1fr;
   }
+  
+  /* 学习资源入口转为单列 */
   .resource-grid {
     grid-template-columns: 1fr;
   }
-  .footer-top {
+  
+  .footer-links {
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
   }
 }
