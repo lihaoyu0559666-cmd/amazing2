@@ -1198,7 +1198,7 @@ img {
 /* 响应式与移动端适配优化 */
 @media (max-width: 992px) {
   .first-screen .container {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 20px;
   }
   
@@ -1207,7 +1207,7 @@ img {
   }
   
   .content-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 20px;
   }
   
@@ -1222,12 +1222,12 @@ img {
   }
   
   .features-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
   }
   
   .resource-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
   }
 }
