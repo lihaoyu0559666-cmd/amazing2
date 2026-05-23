@@ -1894,3 +1894,630 @@ img {
     gap: 20px !important;
   }
 }
+
+/* ==========================================================================
+   思政队伍与服务对象入口样式 (新增)
+   ========================================================================== */
+.role-portal-section {
+  padding: 30px 0 10px 0;
+  background-color: var(--bg-page);
+}
+
+.role-portal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 992px) {
+  .role-portal-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
+.role-portal-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.role-portal-card::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, rgba(184, 0, 0, 0.03) 0%, rgba(184, 0, 0, 0) 70%);
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+.role-portal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary-red);
+}
+
+.role-portal-card:hover::after {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(184, 0, 0, 0.08) 0%, rgba(184, 0, 0, 0) 70%);
+}
+
+.role-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--primary-red-light);
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.role-portal-card:hover .role-icon-box {
+  background-color: var(--primary-red);
+}
+
+.role-icon-box svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--primary-red);
+  transition: var(--transition);
+}
+
+.role-portal-card:hover .role-icon-box svg {
+  fill: #ffffff;
+}
+
+.role-card-text {
+  flex-grow: 1;
+}
+
+.role-card-text h4 {
+  font-size: 1.05rem;
+  color: var(--text-main);
+  margin-bottom: 5px;
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.role-portal-card:hover .role-card-text h4 {
+  color: var(--primary-red);
+}
+
+.role-card-text p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.role-card-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #f1f2f4;
+  flex-shrink: 0;
+  transition: var(--transition);
+  opacity: 0.6;
+}
+
+.role-portal-card:hover .role-card-arrow {
+  background-color: var(--primary-red-light);
+  opacity: 1;
+  transform: translateX(3px);
+}
+
+.role-card-arrow svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--text-muted);
+  transition: var(--transition);
+}
+
+.role-portal-card:hover .role-card-arrow svg {
+  fill: var(--primary-red);
+}
+
+/* ==========================================================================
+   9. 在线学习专区 & 每日答题 & 每日十分钟 新增样式
+   ========================================================================== */
+
+.learning-portal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .learning-portal-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
+.portal-card-btn-item {
+  background: linear-gradient(135deg, var(--primary-red) 0%, var(--deep-red) 100%);
+  border-radius: var(--radius-lg);
+  padding: 30px 40px;
+  color: #FFFFFF;
+  display: block;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 2px solid var(--accent-gold);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.portal-card-btn-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 35px rgba(166, 30, 34, 0.35), 0 0 25px rgba(255, 215, 0, 0.15);
+  border-color: #ffd700;
+}
+
+.portal-card-content {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  position: relative;
+  z-index: 2;
+}
+
+.portal-icon-box {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.portal-card-btn-item:hover .portal-icon-box {
+  background: #ffd700;
+  transform: scale(1.1) rotate(5deg);
+  border-color: #ffd700;
+}
+
+.portal-icon-box svg {
+  width: 32px;
+  height: 32px;
+  fill: #FFFFFF;
+  transition: all 0.3s ease;
+}
+
+.portal-card-btn-item:hover .portal-icon-box svg {
+  fill: var(--deep-red);
+}
+
+.portal-text-box h3 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.portal-card-btn-item:hover .portal-text-box h3 {
+  color: #ffd700;
+}
+
+.portal-text-box p {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.5;
+}
+
+.portal-card-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, rgba(255,255,255,0) 60%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.portal-card-btn-item:hover .portal-card-glow {
+  opacity: 1;
+}
+
+/* 答题及计时学习大卡片样式 */
+.quiz-container, .timer-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.learning-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.learning-card-header {
+  border-bottom: 2.5px solid var(--primary-red);
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.learning-card-header h2 {
+  font-size: 1.7rem;
+  color: var(--text-main);
+  font-weight: 800;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.learning-card-header h2 svg {
+  width: 28px;
+  height: 28px;
+  fill: var(--primary-red);
+}
+
+.learning-tag-badge {
+  background-color: var(--primary-red-light);
+  color: var(--primary-red);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid rgba(166, 30, 34, 0.15);
+}
+
+/* 答题样式 */
+.quiz-question-box {
+  margin-bottom: 30px;
+}
+
+.quiz-question-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.quiz-options-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quiz-option-item {
+  border: 1.5px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quiz-option-item:hover {
+  background-color: #fafbfc;
+  border-color: var(--text-muted);
+}
+
+.quiz-option-item.selected {
+  background-color: var(--primary-red-light);
+  border-color: var(--primary-red);
+  color: var(--primary-red);
+  font-weight: 600;
+}
+
+.quiz-option-item.correct {
+  background-color: #e6fffa;
+  border-color: #319795;
+  color: #234e52;
+  font-weight: 600;
+}
+
+.quiz-option-item.wrong {
+  background-color: #fff5f5;
+  border-color: #e53e3e;
+  color: #742a2a;
+  font-weight: 600;
+}
+
+.quiz-feedback-box {
+  background: #f7fafc;
+  border-left: 4px solid var(--accent-gold);
+  border-radius: 4px;
+  padding: 20px;
+  margin: 25px 0;
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.quiz-feedback-status {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.quiz-feedback-status.success {
+  color: #319795;
+}
+
+.quiz-feedback-status.fail {
+  color: #e53e3e;
+}
+
+.quiz-feedback-text {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.quiz-action-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.btn-primary-red {
+  background-color: var(--primary-red);
+  color: #ffffff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 10px rgba(166, 30, 34, 0.2);
+}
+
+.btn-primary-red:hover {
+  background-color: var(--deep-red);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(166, 30, 34, 0.3);
+}
+
+.btn-primary-red:disabled {
+  background-color: #cbd5e1;
+  color: #64748b;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-outline-gray {
+  background-color: #ffffff;
+  color: var(--text-muted);
+  border: 1.5px solid var(--border-color);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 0.95rem;
+}
+
+.btn-outline-gray:hover {
+  background-color: #f7fafc;
+  color: var(--text-main);
+  border-color: var(--text-muted);
+}
+
+/* 每日十分钟计时器样式 */
+.study-timer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.timer-circle-wrap {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin-bottom: 20px;
+}
+
+.timer-circle-bg, .timer-circle-progress {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 8px solid #f1f2f4;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.timer-circle-progress {
+  border-color: var(--primary-red);
+  border-top-color: transparent;
+  border-left-color: transparent;
+  transform: rotate(-45deg);
+  transition: all 1s linear;
+}
+
+.timer-text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.timer-number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  font-family: monospace;
+}
+
+.timer-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.timer-control-btn {
+  background-color: #fffbee;
+  border: 1.5px solid var(--accent-gold);
+  color: var(--deep-red);
+  font-weight: 700;
+  padding: 8px 24px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px rgba(217, 119, 6, 0.05);
+}
+
+.timer-control-btn:hover {
+  background-color: var(--accent-gold);
+  color: var(--deep-red);
+  box-shadow: 0 6px 12px rgba(217, 119, 6, 0.15);
+  transform: translateY(-1px);
+}
+
+/* 计时页面文章列表 */
+.study-materials-section h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+  border-left: 4px solid var(--primary-red);
+  padding-left: 12px;
+  margin-bottom: 20px;
+}
+
+.study-list-ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.study-list-li {
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+  background-color: #ffffff;
+}
+
+.study-list-li:hover {
+  border-color: var(--primary-red-light);
+  background-color: #fafbfb;
+  transform: translateX(4px);
+}
+
+.study-li-info {
+  flex-grow: 1;
+  margin-right: 20px;
+}
+
+.study-li-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #333333;
+  text-decoration: none;
+  transition: color 0.25s;
+  margin-bottom: 6px;
+  display: inline-block;
+}
+
+.study-li-title:hover {
+  color: var(--primary-red);
+}
+
+.study-li-meta {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.study-li-source {
+  background: #f1f2f4;
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+.study-li-desc {
+  font-size: 0.88rem;
+  color: #718096;
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+.study-link-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--primary-red-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-red);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.study-list-li:hover .study-link-arrow {
+  background-color: var(--primary-red);
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.study-link-arrow svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+

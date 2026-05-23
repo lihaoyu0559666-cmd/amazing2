@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. 初始化动态日期
     initDateDisplay();
 
-    // 2. 导航栏交互 (原型演示用)
+    // 2. 导航栏交互 (实现点击大类切换轮播与推荐内容)
     initNavInteraction();
 
     // 3. 加载并渲染动态数据
@@ -31,7 +31,7 @@ function initDateDisplay() {
 }
 
 /**
- * 导航栏点击切换 Active 状态
+ * 导航栏点击切换 Active 状态，并实时过滤轮播图和重点推荐内容
  */
 function initNavInteraction() {
     const navItems = document.querySelectorAll('.nav-menu-item');
@@ -39,11 +39,12 @@ function initNavInteraction() {
         const link = item.querySelector('a');
         if (link) {
             link.addEventListener('click', (e) => {
-                if (link.getAttribute('href') === '#') {
-                    e.preventDefault();
-                    navItems.forEach(i => i.classList.remove('active'));
-                    item.classList.add('active');
-                }
+                e.preventDefault();
+                navItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                const categoryName = link.textContent.trim();
+                updateCategoryContent(categoryName);
             });
         }
     });
@@ -54,10 +55,11 @@ function initNavInteraction() {
  */
 function loadAppData() {
     try {
-        if (window.newsData && window.newsData.length > 0) {
-            renderAllNews(window.newsData);
+        const hasNews = window.newsAdminData || window.newsFacultyData || window.newsStudentData || window.newsCommonData;
+        if (hasNews) {
+            renderAllNews();
         } else {
-            console.warn('本地 newsData 数据未加载或为空');
+            console.warn('本地新闻数据未加载或为空');
         }
 
         if (window.resourcesData && window.resourcesData.length > 0) {
@@ -78,29 +80,79 @@ function getTargetUrl(item) {
 }
 
 /**
- * 统一分发渲染各模块新闻
+ * 统一分发渲染各模块新闻 (初始化时调用)
  */
-function renderAllNews(news) {
-    // 1. 渲染轮播图
-    const topNews = news.filter(item => item.isTop);
-    renderCarousel(topNews.slice(0, 5)); // 最多5条
+function renderAllNews() {
+    // 1. 初始化渲染“推荐”分类下的轮播图和重点推荐 (会自动识别当前是哪个角色的专属推荐)
+    updateCategoryContent('推荐');
 
-    // 2. 渲染重点推荐
-    const recommendNews = news.filter(item => item.isRecommend);
-    renderRecommendList(recommendNews.slice(0, 7));
-
-    // 3. 渲染分类模块
-    const theoryNews = news.filter(item => item.category === '学习' || item.category === '理论学习');
+    // 2. 渲染下方的四个固定分类卡片模块，使用完全独立且统一的数据源
+    const theoryNews = window.theoryData || [];
     renderCategoryList('theory-list', theoryNews.slice(0, 5));
 
-    const agriNews = news.filter(item => item.category === '强农兴农' || item.category === '推荐');
+    const agriNews = window.agricultureData || [];
     renderCategoryList('agri-list', agriNews.slice(0, 5));
 
-    const beijingNews = news.filter(item => item.category === '北京');
+    const beijingNews = window.practiceData || [];
     renderCategoryList('beijing-list', beijingNews.slice(0, 5));
 
-    const campusNews = news.filter(item => item.category === '学校');
+    const campusNews = window.campusData || [];
     renderCategoryList('campus-list', campusNews.slice(0, 5));
+}
+
+/**
+ * 根据所选分类，动态切换上方轮播图与重点推荐列表
+ */
+function updateCategoryContent(categoryName) {
+    let news = [];
+
+    // 只有“推荐”分类具有角色差异化：根据当前页面加载的专属变量获取数据
+    if (categoryName === '推荐') {
+        if (window.newsAdminData) {
+            news = window.newsAdminData;
+        } else if (window.newsFacultyData) {
+            news = window.newsFacultyData;
+        } else if (window.newsStudentData) {
+            news = window.newsStudentData;
+        }
+    } else {
+        // “要闻”、“学习”、“北京”、“学校”分类为全局公用新闻，统一用 newsCommonData 渲染
+        news = window.newsCommonData || [];
+    }
+    
+    let carouselNews = [];
+    let recommendNews = [];
+
+    if (categoryName === '推荐') {
+        // 推荐分类：展示该角色专属库下的 isTop 与 isRecommend
+        carouselNews = news.filter(item => item.isTop).slice(0, 5);
+        recommendNews = news.filter(item => item.isRecommend).slice(0, 7);
+        
+        // 如果该角色下没有设 Top 或 Recommend，以前几条兜底展示
+        if (carouselNews.length === 0) carouselNews = news.slice(0, 5);
+        if (recommendNews.length === 0) recommendNews = news.slice(0, 7);
+    } else {
+        // 其他公用分类：在公用库下过滤对应的 category
+        const categoryFiltered = news.filter(item => item.category === categoryName);
+
+        carouselNews = categoryFiltered.filter(item => item.isTop);
+        if (carouselNews.length === 0) {
+            carouselNews = categoryFiltered.slice(0, 5);
+        } else {
+            carouselNews = carouselNews.slice(0, 5);
+        }
+
+        recommendNews = categoryFiltered.filter(item => item.isRecommend);
+        if (recommendNews.length === 0) {
+            recommendNews = categoryFiltered.slice(0, 7);
+        } else {
+            recommendNews = recommendNews.slice(0, 7);
+        }
+    }
+
+    // 重新渲染轮播图与右侧重点推荐
+    renderCarousel(carouselNews);
+    renderRecommendList(recommendNews);
 }
 
 /**
@@ -110,7 +162,23 @@ function renderCarousel(newsList) {
     const container = document.getElementById('carousel-inner');
     const dotsContainer = document.querySelector('.carousel-dots');
     
-    if (!container || newsList.length === 0) return;
+    if (!container) return;
+
+    // 当列表为空时显示优雅的占位图
+    if (newsList.length === 0) {
+        container.innerHTML = `
+            <div class="carousel-slide active">
+                <div class="image-placeholder-gradient slide-1" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+                    <svg class="placeholder-icon" viewBox="0 0 24 24" style="width: 64px; height: 64px; fill: rgba(255,255,255,0.4); margin-bottom: 15px;">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54-1.96-2.36L6.5 17h11l-3.54-4.71z"/>
+                    </svg>
+                    <span style="font-size: 1.15rem; font-weight: bold; color: rgba(255,255,255,0.85); text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">暂无对应分类的头条新闻，等待录入...</span>
+                </div>
+            </div>
+        `;
+        if (dotsContainer) dotsContainer.innerHTML = '';
+        return;
+    }
     
     let html = '';
     let dotsHtml = '';
@@ -119,16 +187,18 @@ function renderCarousel(newsList) {
         const isActive = index === 0 ? 'active' : '';
         const targetUrl = getTargetUrl(item);
         
-        // 生成背景样式（如果图片加载失败或不存在时的兼容）
-        const bgStyle = `background-image: url('${item.image}'); background-size: cover; background-position: center;`;
+        const hasImage = item.image && item.image.trim() !== '';
+        const bgStyle = hasImage ? `background-image: url('${item.image}'); background-size: cover; background-position: center;` : '';
         
         html += `
             <div class="carousel-slide ${isActive}" onclick="window.open('${targetUrl}', '_blank')" style="cursor: pointer;">
-                <div class="image-placeholder-gradient slide-${(index % 3) + 1}">
+                <div class="image-placeholder-gradient slide-${(index % 3) + 1}" style="${bgStyle}">
+                    ${!hasImage ? `
                     <svg class="placeholder-icon" viewBox="0 0 24 24">
                         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                     </svg>
                     <span class="placeholder-text" style="font-size: 1.2rem; margin-top: 10px; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">${item.title}</span>
+                    ` : ''}
                 </div>
                 <div class="carousel-caption">
                     <span class="caption-tag">${item.category}</span>
@@ -154,11 +224,20 @@ function renderCarousel(newsList) {
 function renderRecommendList(newsList) {
     const container = document.getElementById('recommend-list');
     if (!container) return;
+
+    if (newsList.length === 0) {
+        container.innerHTML = `
+            <li class="recommend-item" style="text-align: center; color: var(--text-muted); padding: 30px 0; font-size: 0.95rem;">
+                暂无推荐文章
+            </li>
+        `;
+        return;
+    }
     
     let html = '';
     newsList.forEach((item, index) => {
         const isHighlight = index === 0 ? 'highlight' : '';
-        const dateStr = item.date.substring(5, 10); // 提取 MM-DD
+        const dateStr = item.date && item.date !== '长期更新' ? item.date.substring(5, 10) : '学习';
         const titlePrefix = isHighlight ? '【高亮推荐】' : '';
         const targetUrl = getTargetUrl(item);
         
@@ -179,19 +258,110 @@ function renderCategoryList(containerId, newsList) {
     const container = document.getElementById(containerId);
     if (!container) return;
     
+    const moduleBox = container.closest('.card-module');
+    const placeholder = moduleBox ? moduleBox.querySelector('.small-image-placeholder') : null;
+
+    // 默认显示的图片项（取列表中第一篇带有真实配图的文章）
+    const defaultImageItem = newsList.find(item => item.image && item.image.trim() !== '');
+
+    // 1. 如果数据为空，清空卡片列表，并复原占位图
+    if (newsList.length === 0) {
+        container.innerHTML = `
+            <li class="card-list-item" style="justify-content: center; color: var(--text-muted); padding: 25px 0; font-size: 0.95rem;">
+                暂无文章数据
+            </li>
+        `;
+        if (placeholder) {
+            placeholder.style.backgroundImage = 'none';
+            const svg = placeholder.querySelector('svg');
+            const span = placeholder.querySelector('span');
+            if (svg) svg.style.display = '';
+            if (span) span.style.display = '';
+            const oldLink = placeholder.querySelector('.img-cover-link');
+            if (oldLink) oldLink.remove();
+        }
+        return;
+    }
+    
+    // 设置占位图样式的辅助函数
+    function setPlaceholderImage(item) {
+        if (!placeholder) return;
+        if (item && item.image && item.image.trim() !== '') {
+            placeholder.style.position = 'relative';
+            placeholder.style.backgroundImage = `url('${item.image}')`;
+            placeholder.style.backgroundSize = 'cover';
+            placeholder.style.backgroundPosition = 'center';
+            
+            // 隐藏原有的图标和文字
+            const svg = placeholder.querySelector('svg');
+            const span = placeholder.querySelector('span');
+            if (svg) svg.style.display = 'none';
+            if (span) span.style.display = 'none';
+            
+            // 添加/重置绝对定位的跳转遮罩链接
+            let coverLink = placeholder.querySelector('.img-cover-link');
+            if (!coverLink) {
+                coverLink = document.createElement('a');
+                coverLink.className = 'img-cover-link';
+                coverLink.target = '_blank';
+                coverLink.style.cssText = 'display:block; width:100%; height:100%; position:absolute; left:0; top:0; z-index:2;';
+                placeholder.appendChild(coverLink);
+            }
+            coverLink.href = getTargetUrl(item);
+        } else {
+            // 复原默认占位显示
+            placeholder.style.backgroundImage = 'none';
+            const svg = placeholder.querySelector('svg');
+            const span = placeholder.querySelector('span');
+            if (svg) svg.style.display = '';
+            if (span) span.style.display = '';
+            const oldLink = placeholder.querySelector('.img-cover-link');
+            if (oldLink) oldLink.remove();
+        }
+    }
+
+    // 2. 初始化默认封面图展示
+    setPlaceholderImage(defaultImageItem);
+    
+    // 3. 渲染 HTML 列表内容
     let html = '';
     newsList.forEach(item => {
-        const dateStr = item.date.substring(5, 10);
+        const dateStr = item.date && item.date !== '长期更新' ? item.date.substring(5, 10) : '学习';
         const targetUrl = getTargetUrl(item);
+        const itemImage = item.image && item.image.trim() !== '' ? item.image : '';
         
         html += `
-            <li class="card-list-item">
+            <li class="card-list-item" data-image="${itemImage}" data-url="${targetUrl}">
                 <a href="${targetUrl}" target="_blank" class="card-list-link" title="${item.title}">${item.title}</a>
                 <span class="card-list-date">${dateStr}</span>
             </li>
         `;
     });
     container.innerHTML = html;
+
+    // 4. 绑定鼠标滑过标题时，动态切换对应图片与跳转链接的事件
+    if (placeholder) {
+        const items = container.querySelectorAll('.card-list-item');
+        items.forEach(itemEl => {
+            const imgUrl = itemEl.getAttribute('data-image');
+            const targetUrl = itemEl.getAttribute('data-url');
+
+            // 鼠标悬浮移入
+            itemEl.addEventListener('mouseenter', () => {
+                if (imgUrl) {
+                    setPlaceholderImage({ image: imgUrl, url: targetUrl });
+                } else {
+                    // 若移入的新闻没有配图，降级显示当前板块的默认图片
+                    setPlaceholderImage(defaultImageItem);
+                }
+            });
+
+            // 鼠标离开移出
+            itemEl.addEventListener('mouseleave', () => {
+                setPlaceholderImage(defaultImageItem);
+            });
+        });
+    }
 }
 
 /**

@@ -226,6 +226,18 @@
 
             pageTitleEl.textContent = `${moduleName} - 剩余文章列表`;
 
+            if (newsList.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="empty-tip">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/>
+                        </svg>
+                        <p>该板块下暂无文章数据。</p>
+                    </div>
+                `;
+                return;
+            }
+
             // 截取第 5 条后面的剩余内容（slice(5) 获取索引 5 也就是第 6 条之后的所有数据）
             const remainingNews = newsList.slice(5);
 
