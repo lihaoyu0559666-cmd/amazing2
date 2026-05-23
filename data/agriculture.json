@@ -1,1 +1,342 @@
-[]
+[
+  {
+    "id": 1,
+    "title": "农民日报社发布2025年度“三农”十大新闻",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-01-01",
+    "summary": "系统梳理年度三农发展成果，展现农业强国建设和乡村全面振兴进展。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260101/20260101_3/nmrb_20260101_13197_3_2006477365643939885.html",
+    "image": "images/auto/cover_agriculture_1.png",
+    "isTop": false,
+    "isRecommend": true,
+    "tags": [
+      "三农新闻",
+      "农业强国",
+      "乡村振兴"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "启动新一轮全国农业资源区划描绘农业强国空间新坐标",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-01-09",
+    "summary": "聚焦农业资源区划，为农业强国建设和农业农村现代化提供空间支撑。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260109/20260109_3/nmrb_20260109_13202_3_2009394985967915050.html",
+    "image": "images/auto/cover_agriculture_2.png",
+    "isTop": true,
+    "isRecommend": true,
+    "tags": [
+      "农业资源区划",
+      "农业强国",
+      "农业农村现代化"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "七万学子四大角色",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-01-09",
+    "summary": "展示沈阳农业大学服务乡村振兴、培养知农爱农强农兴农人才的实践。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260109/20260109_4/nmrb_20260109_13202_4_2009394985967915066.html",
+    "image": "images/auto/cover_agriculture_3.png",
+    "isTop": false,
+    "isRecommend": true,
+    "tags": [
+      "乡村振兴",
+      "强农兴农",
+      "实践育人"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "深入学习贯彻习近平总书记重要讲话和全国两会精神扎实做好“三农”工作",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-03-17",
+    "summary": "围绕全国两会精神和三农重点任务，部署农业农村工作落实方向。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260317/20260317_1/nmrb_20260317_13254_1_2033656267566845967.html",
+    "image": "images/auto/cover_agriculture_4.png",
+    "isTop": true,
+    "isRecommend": true,
+    "tags": [
+      "三农工作",
+      "全国两会",
+      "政策学习"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "抓细抓实农业农村人才各项工作为扎实推进乡村全面振兴提供坚实支撑",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-03-16",
+    "summary": "聚焦农业农村人才工作，为乡村全面振兴 and 农业强国建设提供人才支撑。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260316/20260316_1/nmrb_20260316_13253_1_2033294574470926347.html",
+    "image": "images/auto/cover_agriculture_5.png",
+    "isTop": false,
+    "isRecommend": true,
+    "tags": [
+      "农业农村人才",
+      "乡村振兴",
+      "人才支撑"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "强“芯”更需精“栽”",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-01-08",
+    "summary": "围绕现代农业背景下种业与栽培协同发展，服务农业强国建设。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260108/20260108_3/nmrb_20260108_13201_3_2009013092663529506.html",
+    "image": "",
+    "isTop": false,
+    "isRecommend": true,
+    "tags": [
+      "种业振兴",
+      "现代农业",
+      "农业科技"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "湖南绘制强农惠农富农“路线图”",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-03-19",
+    "summary": "介绍湖南围绕三农重点工作和农业农村现代化制定的行动路线。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260319/20260319_2/nmrb_20260319_13256_2_2034383603467653142.html",
+    "image": "",
+    "isTop": false,
+    "isRecommend": true,
+    "tags": [
+      "强农惠农富农",
+      "地方实践",
+      "三农工作"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "坚决扛牢全国超级产粮大县责任担当",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-01-29",
+    "summary": "围绕粮食安全和产粮大县责任，展示农业强国建设中的地方担当。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260129/20260129_1/nmrb_20260129_13219_1_2016625702972002317.html",
+    "image": "",
+    "isTop": false,
+    "isRecommend": true,
+    "tags": [
+      "粮食安全",
+      "产粮大县",
+      "农业强国"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "推动乡村全面振兴取得新进展农业农村现代化再上新台阶",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-02-05",
+    "summary": "介绍锚定农业农村现代化、扎实推进乡村全面振兴的相关情况。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260205/20260205_1/nmrb_20260205_13225_1_2019162426327535619.html",
+    "image": "",
+    "isTop": true,
+    "isRecommend": true,
+    "tags": [
+      "乡村全面振兴",
+      "农业农村现代化",
+      "政策解读"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "关于发展我国 brand 农业的几点思考",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-02-03",
+    "summary": "围绕品牌农业发展路径进行思考，服务农业高质量发展。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260203/20260203_3/nmrb_20260203_13223_3_2018436906719744039.html",
+    "image": "",
+    "isTop": false,
+    "isRecommend": true,
+    "tags": [
+      "品牌农业",
+      "农业高质量发展",
+      "三农论坛"
+    ]
+  },
+  {
+    "id": 11,
+    "title": "铿锵足音激荡沃野",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-03-03",
+    "summary": "展示保障粮食安全、农业科技创新和乡村振兴实践中的三农工作成效。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260303/20260303_1/nmrb_20260303_13241_1_2028582534711971844.html",
+    "image": "",
+    "isTop": false,
+    "isRecommend": true,
+    "tags": [
+      "粮食安全",
+      "农业科技",
+      "乡村振兴"
+    ]
+  },
+  {
+    "id": 12,
+    "title": "多部门协同发力京郊现代乡村产业升级",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-04-22",
+    "summary": "聚焦京郊现代乡村产业升级和首都农业农村现代化实践。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260422/20260422_2/nmrb_20260422_13283_2_2046705150203105297.html",
+    "image": "",
+    "isTop": false,
+    "isRecommend": true,
+    "tags": [
+      "京郊农业",
+      "乡村产业",
+      "农业农村现代化"
+    ]
+  },
+  {
+    "id": 13,
+    "title": "建设都市现代农业强市推动乡村全面振兴走在前",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-01-16",
+    "summary": "围绕都市现代农业强市建设，展示地方推进乡村全面振兴的路径。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260116/20260116_1/nmrb_20260116_13208_1_2011912558672449550.html",
+    "image": "",
+    "isTop": false,
+    "isRecommend": true,
+    "tags": [
+      "都市现代农业",
+      "乡村振兴",
+      "地方实践"
+    ]
+  },
+  {
+    "id": 14,
+    "title": "农业农村部召开全国扩大农业农村有效投资工作会议",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-04-30",
+    "summary": "围绕农业农村有效投资和三农重点任务，推动农业农村高质量发展。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260430/20260430_2/nmrb_20260430_13290_2_2049603753640824858.html",
+    "image": "",
+    "isTop": false,
+    "isRecommend": true,
+    "tags": [
+      "农业农村投资",
+      "三农重点任务",
+      "高质量发展"
+    ]
+  },
+  {
+    "id": 15,
+    "title": "“中国粮、中国菜和中国肉都主要用上了中国种”",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-03-05",
+    "summary": "聚焦种业科技和中国种源支撑，为农业强国建设提供基础保障。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260305/20260305_4/nmrb_20260305_13243_4_2029310312990216244.html",
+    "image": "",
+    "isTop": false,
+    "isRecommend": true,
+    "tags": [
+      "中国种",
+      "种业振兴",
+      "农业科技"
+    ]
+  },
+  {
+    "id": 16,
+    "title": "黄路生：让“中国芯”扎根生猪种业",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-01-15",
+    "summary": "围绕生猪种业创新和农业科技自立自强，展示种业强农方向。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260115/20260115_3/nmrb_20260115_13207_3_2011551224126607389.html",
+    "image": "",
+    "isTop": false,
+    "isRecommend": true,
+    "tags": [
+      "生猪种业",
+      "中国芯",
+      "农业科技"
+    ]
+  },
+  {
+    "id": 17,
+    "title": "山西从8方面部署“三农”重点工作",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-02-11",
+    "summary": "介绍山西省围绕三农工作部署重点任务，服务农业农村发展。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260211/20260211_2/nmrb_20260211_13230_2_2021338357230047243.html",
+    "image": "",
+    "isTop": false,
+    "isRecommend": false,
+    "tags": [
+      "三农重点工作",
+      "地方部署",
+      "山西"
+    ]
+  },
+  {
+    "id": 18,
+    "title": "天然橡胶产业如何走向“高质高效”？",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-02-13",
+    "summary": "围绕天然橡胶产业高质量发展，回应农业强国规划中的产业要求。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260213/20260213_8/nmrb_20260213_13232_8_2022060011736371295.html",
+    "image": "",
+    "isTop": false,
+    "isRecommend": false,
+    "tags": [
+      "天然橡胶",
+      "产业发展",
+      "农业强国"
+    ]
+  },
+  {
+    "id": 19,
+    "title": "为打造国家重要农畜产品生产基地贡献力量",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-01-26",
+    "summary": "围绕农畜产品生产基地建设，展示区域服务农业农村发展的实践。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260126/20260126_1/nmrb_20260126_13216_1_2015537209302683666.html",
+    "image": "",
+    "isTop": false,
+    "isRecommend": false,
+    "tags": [
+      "农畜产品",
+      "生产基地",
+      "区域实践"
+    ]
+  },
+  {
+    "id": 20,
+    "title": "农民欢迎什么样的政绩？",
+    "category": "强农兴农",
+    "source": "农民日报",
+    "date": "2026-03-03",
+    "summary": "从三农工作实际出发，讨论基层治理和农业农村工作中的政绩观问题。",
+    "url": "https://szb.farmer.com.cn/nmrb/html/2026/20260303/20260303_1/nmrb_20260303_13241_1_2028582534711971849.html",
+    "image": "",
+    "isTop": false,
+    "isRecommend": false,
+    "tags": [
+      "三农工作",
+      "政绩观",
+      "基层治理"
+    ]
+  }
+]

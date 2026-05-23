@@ -9,7 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. 导航栏交互 (实现点击大类切换轮播与推荐内容)
     initNavInteraction();
 
-    // 3. 加载并渲染动态数据
+    // 3. 新增顶部大图横幅自动轮播
+    initBannerCarousel();
+
+    // 4. 新增可交互本地搜索引擎接口
+    initSearch();
+
+    // 5. 加载并渲染动态数据
     loadAppData();
 });
 
@@ -104,6 +110,26 @@ function renderAllNews() {
  * 根据所选分类，动态切换上方轮播图与重点推荐列表
  */
 function updateCategoryContent(categoryName) {
+    // 每日答题、每日十分钟只在推荐栏目时出现，选择其他导航时隐藏
+    const specialLearningBanner = document.querySelector('.special-learning-banner');
+    if (specialLearningBanner) {
+        if (categoryName === '推荐') {
+            specialLearningBanner.style.display = '';
+        } else {
+            specialLearningBanner.style.display = 'none';
+        }
+    }
+
+    // 顶部大图横幅轮播只在推荐栏目时出现，选择其他导航时隐藏
+    const topBannerSection = document.querySelector('.top-banner-carousel-section');
+    if (topBannerSection) {
+        if (categoryName === '推荐') {
+            topBannerSection.style.display = '';
+        } else {
+            topBannerSection.style.display = 'none';
+        }
+    }
+
     let news = [];
 
     // 只有“推荐”分类具有角色差异化：根据当前页面加载的专属变量获取数据
@@ -119,7 +145,7 @@ function updateCategoryContent(categoryName) {
         // “要闻”、“学习”、“北京”、“学校”分类为全局公用新闻，统一用 newsCommonData 渲染
         news = window.newsCommonData || [];
     }
-    
+
     let carouselNews = [];
     let recommendNews = [];
 
@@ -127,7 +153,7 @@ function updateCategoryContent(categoryName) {
         // 推荐分类：展示该角色专属库下的 isTop 与 isRecommend
         carouselNews = news.filter(item => item.isTop).slice(0, 5);
         recommendNews = news.filter(item => item.isRecommend).slice(0, 7);
-        
+
         // 如果该角色下没有设 Top 或 Recommend，以前几条兜底展示
         if (carouselNews.length === 0) carouselNews = news.slice(0, 5);
         if (recommendNews.length === 0) recommendNews = news.slice(0, 7);
@@ -161,7 +187,7 @@ function updateCategoryContent(categoryName) {
 function renderCarousel(newsList) {
     const container = document.getElementById('carousel-inner');
     const dotsContainer = document.querySelector('.carousel-dots');
-    
+
     if (!container) return;
 
     // 当列表为空时显示优雅的占位图
@@ -179,17 +205,17 @@ function renderCarousel(newsList) {
         if (dotsContainer) dotsContainer.innerHTML = '';
         return;
     }
-    
+
     let html = '';
     let dotsHtml = '';
-    
+
     newsList.forEach((item, index) => {
         const isActive = index === 0 ? 'active' : '';
         const targetUrl = getTargetUrl(item);
-        
+
         const hasImage = item.image && item.image.trim() !== '';
         const bgStyle = hasImage ? `background-image: url('${item.image}'); background-size: cover; background-position: center;` : '';
-        
+
         html += `
             <div class="carousel-slide ${isActive}" onclick="window.open('${targetUrl}', '_blank')" style="cursor: pointer;">
                 <div class="image-placeholder-gradient slide-${(index % 3) + 1}" style="${bgStyle}">
@@ -207,13 +233,13 @@ function renderCarousel(newsList) {
                 </div>
             </div>
         `;
-        
+
         dotsHtml += `<span class="dot ${isActive}" data-index="${index}"></span>`;
     });
-    
+
     container.innerHTML = html;
     if (dotsContainer) dotsContainer.innerHTML = dotsHtml;
-    
+
     // 渲染完成后重新初始化轮播图事件
     initCarouselEvents();
 }
@@ -233,14 +259,14 @@ function renderRecommendList(newsList) {
         `;
         return;
     }
-    
+
     let html = '';
     newsList.forEach((item, index) => {
         const isHighlight = index === 0 ? 'highlight' : '';
         const dateStr = item.date && item.date !== '长期更新' ? item.date.substring(5, 10) : '学习';
         const titlePrefix = isHighlight ? '【高亮推荐】' : '';
         const targetUrl = getTargetUrl(item);
-        
+
         html += `
             <li class="recommend-item ${isHighlight}">
                 <a href="${targetUrl}" target="_blank" class="recommend-item-link" title="${item.title}">${titlePrefix}${item.title}</a>
@@ -257,12 +283,12 @@ function renderRecommendList(newsList) {
 function renderCategoryList(containerId, newsList) {
     const container = document.getElementById(containerId);
     if (!container) return;
-    
+
     const moduleBox = container.closest('.card-module');
     const placeholder = moduleBox ? moduleBox.querySelector('.small-image-placeholder') : null;
 
-    // 默认显示的图片项（取列表中第一篇带有真实配图的文章）
-    const defaultImageItem = newsList.find(item => item.image && item.image.trim() !== '');
+    // 默认显示的图片项（刚开始设置为序号一）
+    const defaultImageItem = newsList[0];
 
     // 1. 如果数据为空，清空卡片列表，并复原占位图
     if (newsList.length === 0) {
@@ -282,7 +308,7 @@ function renderCategoryList(containerId, newsList) {
         }
         return;
     }
-    
+
     // 设置占位图样式的辅助函数
     function setPlaceholderImage(item) {
         if (!placeholder) return;
@@ -291,13 +317,13 @@ function renderCategoryList(containerId, newsList) {
             placeholder.style.backgroundImage = `url('${item.image}')`;
             placeholder.style.backgroundSize = 'cover';
             placeholder.style.backgroundPosition = 'center';
-            
+
             // 隐藏原有的图标和文字
             const svg = placeholder.querySelector('svg');
             const span = placeholder.querySelector('span');
             if (svg) svg.style.display = 'none';
             if (span) span.style.display = 'none';
-            
+
             // 添加/重置绝对定位的跳转遮罩链接
             let coverLink = placeholder.querySelector('.img-cover-link');
             if (!coverLink) {
@@ -320,16 +346,16 @@ function renderCategoryList(containerId, newsList) {
         }
     }
 
-    // 2. 初始化默认封面图展示
+    // 2. 初始化默认封面图展示 (首次加载置为序号一)
     setPlaceholderImage(defaultImageItem);
-    
+
     // 3. 渲染 HTML 列表内容
     let html = '';
     newsList.forEach(item => {
         const dateStr = item.date && item.date !== '长期更新' ? item.date.substring(5, 10) : '学习';
         const targetUrl = getTargetUrl(item);
         const itemImage = item.image && item.image.trim() !== '' ? item.image : '';
-        
+
         html += `
             <li class="card-list-item" data-image="${itemImage}" data-url="${targetUrl}">
                 <a href="${targetUrl}" target="_blank" class="card-list-link" title="${item.title}">${item.title}</a>
@@ -346,19 +372,9 @@ function renderCategoryList(containerId, newsList) {
             const imgUrl = itemEl.getAttribute('data-image');
             const targetUrl = itemEl.getAttribute('data-url');
 
-            // 鼠标悬浮移入
+            // 鼠标悬浮移入：改变图片，当鼠标移出时，保留上一次滑过的状态，不设 mouseleave 复位
             itemEl.addEventListener('mouseenter', () => {
-                if (imgUrl) {
-                    setPlaceholderImage({ image: imgUrl, url: targetUrl });
-                } else {
-                    // 若移入的新闻没有配图，降级显示当前板块的默认图片
-                    setPlaceholderImage(defaultImageItem);
-                }
-            });
-
-            // 鼠标离开移出
-            itemEl.addEventListener('mouseleave', () => {
-                setPlaceholderImage(defaultImageItem);
+                setPlaceholderImage({ image: imgUrl, url: targetUrl });
             });
         });
     }
@@ -370,18 +386,18 @@ function renderCategoryList(containerId, newsList) {
 function renderResources(resourcesList) {
     const container = document.getElementById('resource-grid');
     if (!container) return;
-    
+
     // 预设卡片样式类数组
     const cardClasses = ['card-xuexi', 'card-people', 'card-xinhua', 'card-cau', 'card-cyol'];
-    
+
     let html = '';
     resourcesList.forEach((item, index) => {
         const cardClass = cardClasses[index % cardClasses.length];
-        
+
         // 提取名称的前4个字作为 logo 文字，按两行换行
         const shortName = item.name.substring(0, 4);
         const logoText = shortName.length > 2 ? `${shortName.substring(0, 2)}<br>${shortName.substring(2, 4)}` : shortName;
-        
+
         html += `
             <div class="resource-card ${cardClass}">
                 <div class="resource-header">
@@ -395,7 +411,7 @@ function renderResources(resourcesList) {
             </div>
         `;
     });
-    
+
     container.innerHTML = html;
 }
 
@@ -413,14 +429,14 @@ function initCarouselEvents() {
 
     let currentIndex = 0;
     let timer = null;
-    const intervalTime = 5000; 
+    const intervalTime = 5000;
 
     function goToSlide(index) {
         slides[currentIndex].classList.remove('active');
         if (dots[currentIndex]) dots[currentIndex].classList.remove('active');
-        
+
         currentIndex = (index + slides.length) % slides.length;
-        
+
         slides[currentIndex].classList.add('active');
         if (dots[currentIndex]) dots[currentIndex].classList.add('active');
     }
@@ -465,3 +481,338 @@ function initCarouselEvents() {
 
     startAutoPlay();
 }
+
+/**
+ * 初始化顶部大图横幅轮播 (Banner Carousel)
+ */
+function initBannerCarousel() {
+    const slides = document.querySelectorAll('.banner-carousel-slide');
+    const dots = document.querySelectorAll('.banner-carousel-dots .banner-dot');
+    const prevBtn = document.querySelector('.banner-carousel-btn.prev');
+    const nextBtn = document.querySelector('.banner-carousel-btn.next');
+    const wrapper = document.querySelector('.banner-carousel-wrapper');
+
+    if (slides.length === 0) return;
+
+    let currentIndex = 0;
+    let timer = null;
+    const intervalTime = 3000; // 轮播时间设置为 3 秒
+
+    function goToSlide(index) {
+        slides[currentIndex].classList.remove('active');
+        if (dots[currentIndex]) dots[currentIndex].classList.remove('active');
+
+        currentIndex = (index + slides.length) % slides.length;
+
+        slides[currentIndex].classList.add('active');
+        if (dots[currentIndex]) dots[currentIndex].classList.add('active');
+    }
+
+    function nextSlide() { goToSlide(currentIndex + 1); }
+    function prevSlide() { goToSlide(currentIndex - 1); }
+
+    function startAutoPlay() {
+        if (!timer) timer = setInterval(nextSlide, intervalTime);
+    }
+    function stopAutoPlay() {
+        if (timer) {
+            clearInterval(timer);
+            timer = null;
+        }
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            prevSlide();
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            nextSlide();
+        });
+    }
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', (e) => {
+            e.preventDefault();
+            goToSlide(index);
+        });
+    });
+
+    if (wrapper) {
+        wrapper.addEventListener('mouseenter', stopAutoPlay);
+        wrapper.addEventListener('mouseleave', startAutoPlay);
+    }
+
+    startAutoPlay();
+}
+
+/**
+ * 初始化搜索功能 (Local Interactive Search)
+ */
+function initSearch() {
+    const searchInput = document.querySelector('.search-box input');
+    const searchBtn = document.querySelector('.search-btn');
+
+    if (!searchInput || !searchBtn) return;
+
+    // 监听回车按键
+    searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const keyword = searchInput.value.trim();
+            if (keyword) {
+                performSearch(keyword);
+            }
+        }
+    });
+
+    // 监听搜索按钮点击
+    searchBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const keyword = searchInput.value.trim();
+        if (keyword) {
+            performSearch(keyword);
+        }
+    });
+}
+
+/**
+ * 聚合全站所有本地数据库链接
+ */
+function getSearchData() {
+    let allData = [];
+
+    // 1. 公共板块新闻 (学习、要闻、北京、学校)
+    if (window.newsCommonData) {
+        window.newsCommonData.forEach(item => {
+            allData.push({
+                ...item,
+                dbSource: '公共新闻',
+                sourceCategory: item.category || '其它'
+            });
+        });
+    }
+
+    // 2. 角色专有推荐新闻
+    const roleNews = window.newsAdminData || window.newsFacultyData || window.newsStudentData;
+    if (roleNews) {
+        roleNews.forEach(item => {
+            allData.push({
+                ...item,
+                dbSource: '推荐新闻',
+                sourceCategory: '特别推荐'
+            });
+        });
+    }
+
+    // 3. 理论学习板块新闻
+    if (window.theoryData) {
+        window.theoryData.forEach(item => {
+            allData.push({
+                ...item,
+                dbSource: '理论学习',
+                sourceCategory: '理论学习'
+            });
+        });
+    }
+
+    // 4. 强农兴农板块新闻
+    if (window.agricultureData) {
+        window.agricultureData.forEach(item => {
+            allData.push({
+                ...item,
+                dbSource: '强农兴农',
+                sourceCategory: '强农兴农'
+            });
+        });
+    }
+
+    // 5. 思政育人/实践板块新闻
+    if (window.practiceData) {
+        window.practiceData.forEach(item => {
+            allData.push({
+                ...item,
+                dbSource: '思政育人',
+                sourceCategory: '思政育人'
+            });
+        });
+    }
+
+    // 6. 校园动态板块新闻
+    if (window.campusData) {
+        window.campusData.forEach(item => {
+            allData.push({
+                ...item,
+                dbSource: '校园动态',
+                sourceCategory: '校园动态'
+            });
+        });
+    }
+
+    // 7. 学习资源入口数据
+    if (window.resourcesData) {
+        window.resourcesData.forEach(item => {
+            allData.push({
+                id: item.id,
+                title: item.name,
+                url: item.url,
+                summary: item.description,
+                date: '长期有效',
+                source: item.name,
+                dbSource: '学习资源',
+                sourceCategory: '资源入口',
+                tags: ['资源平台', '外部链接']
+            });
+        });
+    }
+
+    // 去重处理 (优先保留非空url条目，基于 url 去重)
+    const uniqueData = [];
+    const seenUrls = new Set();
+
+    allData.forEach(item => {
+        if (item.url && item.url !== '#') {
+            if (!seenUrls.has(item.url)) {
+                seenUrls.add(item.url);
+                uniqueData.push(item);
+            }
+        } else {
+            uniqueData.push(item);
+        }
+    });
+
+    return uniqueData;
+}
+
+/**
+ * 执行搜索渲染
+ */
+function performSearch(keyword) {
+    const searchData = getSearchData();
+    const keywordLower = keyword.toLowerCase();
+
+    // 进行多字段模糊过滤
+    const results = searchData.filter(item => {
+        const titleMatch = item.title && item.title.toLowerCase().includes(keywordLower);
+        const summaryMatch = item.summary && item.summary.toLowerCase().includes(keywordLower);
+        const sourceMatch = item.source && item.source.toLowerCase().includes(keywordLower);
+        const tagsMatch = item.tags && item.tags.some(tag => tag.toLowerCase().includes(keywordLower));
+        return titleMatch || summaryMatch || sourceMatch || tagsMatch;
+    });
+
+    // 隐藏主视图中的各个板块
+    const sectionsToHide = [
+        document.querySelector('.top-banner-carousel-section'),
+        document.querySelector('.first-screen'),
+        document.querySelector('.special-learning-banner'),
+        document.querySelector('.content-grid-section')
+    ];
+    sectionsToHide.forEach(sec => {
+        if (sec) sec.style.display = 'none';
+    });
+
+    // 清理可能已有的搜索结果区
+    const oldResults = document.querySelector('.search-results-section');
+    if (oldResults) oldResults.remove();
+
+    // 创建搜索结果块
+    const resultsSection = document.createElement('section');
+    resultsSection.className = 'search-results-section';
+    resultsSection.style.cssText = 'padding: 40px 0 60px 0; min-height: 60vh; background-color: var(--bg-page);';
+
+    let resultsListHtml = '';
+    if (results.length === 0) {
+        // 无结果占位图
+        resultsListHtml = `
+            <div style="text-align: center; padding: 60px 0; color: var(--text-muted);">
+                <svg class="placeholder-icon" viewBox="0 0 24 24" style="width: 64px; height: 64px; fill: #cbd5e1; margin-bottom: 15px;">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+                <p style="font-size: 1.15rem; font-weight: 600; color: var(--text-main); margin-bottom: 8px;">未找到与 “${keyword}” 匹配的学习内容</p>
+                <span style="font-size: 0.9rem;">请尝试使用其他关键字，如“习近平”、“农大”、“精神”、“科技”等。</span>
+            </div>
+        `;
+    } else {
+        // 卡片渲染列表
+        resultsListHtml = `
+            <div class="search-results-list" style="display: flex; flex-direction: column; gap: 20px;">
+                ${results.map(item => {
+            const dateStr = item.date && item.date !== '长期更新' ? item.date : '长期有效';
+            const targetUrl = item.url && item.url !== '#' ? item.url : '#';
+            const tagsHtml = item.tags ? item.tags.map(t => `<span class="tag" style="background-color: var(--primary-red-light); color: var(--primary-red); border: 1px solid var(--primary-red-border); padding: 2px 8px; border-radius: 4px; font-size: 11px; margin-right: 8px; font-weight: 600;">${t}</span>`).join('') : '';
+
+            const highlightedTitle = highlightKeyword(item.title || '', keyword);
+            const highlightedSummary = highlightKeyword(item.summary || '暂无详细介绍。', keyword);
+
+            return `
+                        <div class="search-result-card">
+                            <div class="search-result-card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span class="search-result-source-badge">${item.dbSource} · ${item.sourceCategory}</span>
+                                <span style="font-size: 13px; color: var(--text-muted); font-weight: 500;">${dateStr}</span>
+                            </div>
+                            <h4 style="margin: 0 0 10px 0; font-size: 1.25rem; font-weight: 800; line-height: 1.45;">
+                                <a href="${targetUrl}" target="_blank" class="search-result-title-link">${highlightedTitle}</a>
+                            </h4>
+                            <p style="margin: 0 0 15px 0; font-size: 0.92rem; color: var(--text-body); line-height: 1.6;">${highlightedSummary}</p>
+                            ${tagsHtml ? `<div style="display: flex; flex-wrap: wrap; gap: 4px;">${tagsHtml}</div>` : ''}
+                        </div>
+                    `;
+        }).join('')}
+            </div>
+        `;
+    }
+
+    // 渲染整体结构
+    resultsSection.innerHTML = `
+        <div class="container">
+            <div class="section-title-bar" style="margin-bottom: 25px; border-bottom: 2.5px solid var(--primary-red); padding-bottom: 12px;">
+                <h3>搜索结果：关于 “${keyword}” 的检索结果（共找到 ${results.length} 条记录）</h3>
+                <button class="btn-primary-red" id="close-search-btn" style="padding: 6px 18px; font-size: 0.88rem; font-weight: 700; border-radius: var(--radius-md);">返回首页</button>
+            </div>
+            ${resultsListHtml}
+        </div>
+    `;
+
+    // 将结果插入在最上方（横幅轮播图原位置或main开头）
+    const mainEl = document.querySelector('main');
+    if (mainEl) {
+        mainEl.insertBefore(resultsSection, mainEl.firstChild);
+    }
+
+    // 绑定返回首页按钮事件
+    const closeBtn = document.getElementById('close-search-btn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // 移除搜索结果区块
+            resultsSection.remove();
+            // 恢复显示原本隐藏的所有板块
+            sectionsToHide.forEach(sec => {
+                if (sec) sec.style.display = '';
+            });
+            // 根据当前激活的分类重置大标题和特别推荐等模块的显示状态
+            const activeNavItem = document.querySelector('.nav-menu-item.active a');
+            const activeCategoryName = activeNavItem ? activeNavItem.textContent.trim() : '推荐';
+            updateCategoryContent(activeCategoryName);
+
+            // 清空搜索框内容
+            const searchInput = document.querySelector('.search-box input');
+            if (searchInput) searchInput.value = '';
+        });
+    }
+}
+
+/**
+ * 辅助函数：高亮匹配的搜索关键词，保持原文本大小写，使用 RegExp 替换
+ */
+function highlightKeyword(text, keyword) {
+    if (!text || !keyword) return text || '';
+    const escapedKeyword = keyword.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    const regex = new RegExp(`(${escapedKeyword})`, 'gi');
+    return text.replace(regex, '<span class="search-highlight">$1</span>');
+}
+

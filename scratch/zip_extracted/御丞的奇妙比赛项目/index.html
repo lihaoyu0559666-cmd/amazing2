@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国农业大学“耘思”大思政平台 - 比赛答辩展示原型</title>
+    <meta name="description" content="中国农业大学“耘思”大思政平台首页原型展示。本网页为比赛答辩展示静态原型，包含理论学习、强农兴农、北京实践、校园动态等思政模块。">
+    <!-- 引入美化样式表 -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- 1. 顶部细小信息栏 -->
+    <div class="top-info-bar">
+        <div class="container">
+            <div class="left-info">
+                <span class="badge">原型展示</span>
+                <span>欢迎光临中国农业大学“耘思”大思政平台答辩原型网站！</span>
+            </div>
+            <!-- 日期由 JavaScript 动态渲染 -->
+            <div class="right-info" id="current-date">正在获取系统日期...</div>
+        </div>
+    </div>
+
+    <!-- 2. 顶部主视觉红色横幅区域 -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-logo-area">
+                <!-- 麦穗与书页徽标组合的圆形Logo占位 -->
+                <div class="logo-circle" title="校徽占位">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+                        <path d="M19 12.35l-7 3.82-7-3.82V17l7 3.82 7-3.82v-4.65z"/>
+                        <path d="M12 12c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1z"/>
+                    </svg>
+                </div>
+                <div class="header-text-group">
+                    <h1 class="platform-logo-title">中国农业大学“耘思”大思政平台</h1>
+                    <p class="platform-slogan">厚植知农爱农情怀，汇聚强农兴农力量</p>
+                </div>
+            </div>
+            
+            <div class="header-action-area">
+                <!-- 预留搜索框（答辩静态框，不触发事件） -->
+                <div class="search-box">
+                    <input type="text" placeholder="搜索理论、活动、动态..." disabled>
+                    <button type="button" class="search-btn" aria-label="搜索">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </button>
+                </div>
+                <!-- 预留学习入口 -->
+                <a href="#" class="header-btn-link" title="学习入口（暂未开放）">
+                    <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    </svg>
+                    学习入口
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. 主导航栏 -->
+    <nav class="nav-bar">
+        <div class="container">
+            <ul class="nav-menu">
+                <li class="nav-menu-item active"><a href="#">推荐</a></li>
+                <li class="nav-menu-item"><a href="#">要闻</a></li>
+                <li class="nav-menu-item"><a href="#">学习</a></li>
+                <li class="nav-menu-item"><a href="#">北京</a></li>
+                <li class="nav-menu-item"><a href="#">学校</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- 4. 首页首屏主体区域 -->
+        <section class="first-screen">
+            <div class="container">
+                <!-- 左侧头条大图轮播区域 -->
+                <div class="carousel-wrapper">
+                    <div class="carousel-inner">
+                        
+                        <!-- 幻灯片 1 -->
+                        <div class="carousel-slide active">
+                            <div class="image-placeholder-gradient slide-1">
+                                <svg class="placeholder-icon" viewBox="0 0 24 24">
+                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                </svg>
+                                <span class="placeholder-text">[ 头条焦点大图占位区域 一 ]</span>
+                            </div>
+                            <div class="carousel-caption">
+                                <span class="caption-tag">重点推荐</span>
+                                <h2>“头条推荐内容标题占位”：厚植知农爱农情怀，练就兴农本领</h2>
+                                <p>【副标题占位】这里是头条推荐内容简介占位。青年学子走进科技小院，在广阔天地间躬身实践，用汗水与担当书写强农兴农的新时代思政答卷...</p>
+                            </div>
+                        </div>
+
+                        <!-- 幻灯片 2 -->
+                        <div class="carousel-slide">
+                            <div class="image-placeholder-gradient slide-2">
+                                <svg class="placeholder-icon" viewBox="0 0 24 24">
+                                    <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66c.95-2.37 2.4-5.28 4.29-6.83 2.73-2.24 6-2.17 9-3.17V8zM12 3C6.48 3 2 7.48 2 13c0 .35.02.69.06 1.03.75-.41 1.58-.69 2.44-.82.16-1.57.85-3.03 1.94-4.12.92-.92 2.12-1.47 3.39-1.63L12 3z"/>
+                                </svg>
+                                <span class="placeholder-text">[ 头条焦点大图占位区域 二 ]</span>
+                            </div>
+                            <div class="carousel-caption">
+                                <span class="caption-tag">专题学习</span>
+                                <h2>“头条推荐内容标题占位”：解民生之多艰，育强农之先锋</h2>
+                                <p>【副标题占位】这里是强农兴农教育实践活动的头条内容占位。中国农业大学大思政课将课堂搬到田间地头，将思政育人与劳动实践深度结合...</p>
+                            </div>
+                        </div>
+
+                        <!-- 幻灯片 3 -->
+                        <div class="carousel-slide">
+                            <div class="image-placeholder-gradient slide-3">
+                                <svg class="placeholder-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2L2 22h20L12 2zm0 3.99L19.53 19H4.47L12 5.99zM13 16h-2v2h2v-2zm0-6h-2v4h2v-4z"/>
+                                </svg>
+                                <span class="placeholder-text">[ 头条焦点大图占位区域 三 ]</span>
+                            </div>
+                            <div class="carousel-caption">
+                                <span class="caption-tag">北京实践</span>
+                                <h2>“头条推荐内容标题占位”：用好首都红色资源，讲好大思政课</h2>
+                                <p>【副标题占位】这里是北京红色实践教育成果占位。依托首都丰富的革命地标，打造浸润式思政课，引导青年师生在追寻红色足迹中感悟初心使命...</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- 左右切换箭头 -->
+                    <button class="carousel-btn prev" aria-label="上一张">
+                        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                    </button>
+                    <button class="carousel-btn next" aria-label="下一张">
+                        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                    </button>
+
+                    <!-- 底部轮播圆点 -->
+                    <div class="carousel-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+
+                <!-- 右侧文章标题列表 -->
+                <div class="recommend-list-wrapper">
+                    <div class="section-title-bar">
+                        <h3>重点推荐</h3>
+                    </div>
+                    <ul class="recommend-list">
+                        <!-- 第一条高亮样式 -->
+                        <li class="recommend-item highlight">
+                            <a href="#" class="recommend-item-link">【高亮推荐】“文章标题占位内容”深刻领会大思政课建设的核心要义</a>
+                            <span class="recommend-item-date">05-20</span>
+                        </li>
+                        <li class="recommend-item">
+                            <a href="#" class="recommend-item-link">“文章标题占位内容”以实际行动服务强农兴农，写好大地上的答卷</a>
+                            <span class="recommend-item-date">05-20</span>
+                        </li>
+                        <li class="recommend-item">
+                            <a href="#" class="recommend-item-link">“文章标题占位内容”校党委召开大思政教育体系建设理论专题研讨会</a>
+                            <span class="recommend-item-date">05-19</span>
+                        </li>
+                        <li class="recommend-item">
+                            <a href="#" class="recommend-item-link">“文章标题占位内容”将科学技术带入乡村，科技小院里的青春思政课</a>
+                            <span class="recommend-item-date">05-18</span>
+                        </li>
+                        <li class="recommend-item">
+                            <a href="#" class="recommend-item-link">“文章标题占位内容”寻访首都红色遗迹，厚植师生爱党爱国情怀</a>
+                            <span class="recommend-item-date">05-17</span>
+                        </li>
+                        <li class="recommend-item">
+                            <a href="#" class="recommend-item-link">“文章标题占位内容”青年成长故事：展现新时代农大学子的奋斗足迹</a>
+                            <span class="recommend-item-date">05-15</span>
+                        </li>
+                        <li class="recommend-item">
+                            <a href="#" class="recommend-item-link">“文章标题占位内容”我校首批“大思政课”实践育人基地名录正式公布</a>
+                            <span class="recommend-item-date">05-14</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 专题学习横幅区（新增） -->
+        <section class="special-learning-banner">
+            <div class="container">
+                <div class="banner-card">
+                    <!-- SVG 麦穗抽象几何纹理背景 -->
+                    <div class="banner-pattern">
+                        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <pattern id="wheat-pattern" width="80" height="80" patternUnits="userSpaceOnUse">
+                                    <path d="M40 10 Q45 25 40 40 Q35 25 40 10 M40 15 Q50 20 40 25 Q30 20 40 15" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1.5"/>
+                                    <path d="M40 40 L40 70" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1.5"/>
+                                    <path d="M20 50 Q25 55 20 60 Q15 55 20 50" fill="none" stroke="rgba(255,255,255,0.02)" stroke-width="1"/>
+                                </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#wheat-pattern)"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="banner-left-info">
+                        <span class="banner-tag">本期专题学习</span>
+                        <h2 class="banner-title">聚焦强农兴农使命，构建大思政育人新场景</h2>
+                        <p class="banner-desc">大思政课不仅在课堂上，更在田野间、实验室和祖国的大地上。引导青年学子深入基层、投身农业，把论文写在山河大地上，践行知农爱农、强农兴农的责任担当。</p>
+                    </div>
+                    <div class="banner-right-actions">
+                        <a href="#" class="banner-action-btn">理论学习</a>
+                        <a href="#" class="banner-action-btn">实践育人</a>
+                        <a href="#" class="banner-action-btn">青年故事</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. 首页下方内容模块 -->
+        <section class="content-grid-section">
+            <div class="container">
+                <div class="content-grid">
+                    
+                    <!-- 模块 1：理论学习 -->
+                    <div class="card-module theory">
+                        <div class="section-title-bar">
+                            <h3>理论学习</h3>
+                            <a href="#" class="card-more-btn">查看更多 &raquo;</a>
+                        </div>
+                        <div class="card-content-layout">
+                            <!-- 1 个小图片占位区域 -->
+                            <div class="small-image-placeholder" title="理论学习图片占位">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+                                </svg>
+                                <span>[ 理论学习图片占位 ]</span>
+                            </div>
+                            <!-- 3-5 条文字列表占位 -->
+                            <ul class="card-list">
+                                <li class="card-list-item">
+                                    <a href="#" class="card-list-link">“栏目文章标题占位内容”深入学习关于思政课建设的重要论述</a>
+                                    <span class="card-list-date">05-20</span>
+                                </li>
+                                <li class="card-list-item">
+                                    <a href="#" class="card-list-link">“栏目文章标题占位内容”传承薪火精神，厚植爱农报国初心使命</a>
+                                    <span class="card-list-date">05-19</span>
+                                </li>
+                                <li class="card-list-item">
+                                    <a href="#" class="card-list-link">“栏目文章标题占位内容”以文化人、以德育人理论研讨会召开</a>
+                                    <span class="card-list-date">05-18</span>
+                                </li>
+                                <li class="card-list-item">
+                                    <a href="#" class="card-list-link">“栏目文章标题占位内容”构建全方位“大思政课”协同育人格局</a>
+                                    <span class="card-list-date">05-16</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 模块 2：强农兴农 -->
+                    <div class="card-module agriculture">
+                        <div class="section-title-bar">
+                            <h3>强农兴农</h3>
+                            <a href="#" class="card-more-btn">查看更多 &raquo;</a>
+                        </div>
+                        <div class="card-content-layout">
+                            <!-- 1 个小图片占位区域 -->
+                            <div class="small-image-placeholder" title="强农兴农图片占位">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 3v18M3 12h18M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9z"/>
+                                    <path d="M17 8c-3.11 0-6.19 1.4-8.08 4.02C8.36 12.92 8 13.93 8 15c0 1.66 1.34 3 3 3 1.07 0 2.08-.36 2.98-.92C16.6 15.19 18 12.11 18 9v-1h-1z" fill="none" stroke="#ffffff" stroke-width="2"/>
+                                </svg>
+                                <span>[ 强农兴农图片占位 ]</span>
+                            </div>
+                            <!-- 3-5 条文字列表占位 -->
+                            <ul class="card-list">
+                                <li class="card-list-item">
+                                    <a href="#" class="card-list-link">“栏目文章标题占位内容”扎根泥土的科技小院：劳动育人最生动实践</a>
+                                    <span class="card-list-date">05-20</span>
+                                </li>
+                                <li class="card-list-item">
+                                    <a href="#" class="card-list-link">“栏目文章标题占位内容”在黑土地上上好思政课，书写强农新篇章</a>
+                                    <span class="card-list-date">05-19</span>
+                                </li>
+                                <li class="card-list-item">
+                                    <a href="#" class="card-list-link">“栏目文章标题占位内容”我校百名博士师生服务乡村春耕大忙一线</a>
+                                    <span class="card-list-date">05-17</span>
+                                </li>
+                                <li class="card-list-item">
+                                    <a href="#" class="card-list-link">“栏目文章标题占位内容”厚植三农情怀，以专业实践赋能现代农业</a>
+                                    <span class="card-list-date">05-15</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 模块 3：北京实践 -->
+                    <div class="card-module practice">
+                        <div class="section-title-bar">
+                            <h3>北京实践</h3>
+                            <a href="#" class="card-more-btn">查看更多 &raquo;</a>
+                        </div>
+                        <div class="card-content-layout">
+                            <!-- 1 个小图片占位区域 -->
+                            <div class="small-image-placeholder" title="北京实践图片占位">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                </svg>
+                                <span>[ 北京实践图片占位 ]</span>
+                            </div>
+                            <!-- 3-5 条文字列表占位 -->
+                            <ul class="card-list">
+                                <li class="card-list-item">
+                                    <a href="#" class="card-list-link">“栏目文章标题占位内容”师生党员寻访京华红色基地，感悟革命精神</a>
+                                    <span class="card-list-date">05-20</span>
+                                </li>
+                                <li class="card-list-item">
+                                    <a href="#" class="card-list-link">“栏目文章标题占位内容”大思政实践：与北京市属纪念馆共建大课堂</a>
+                                    <span class="card-list-date">05-18</span>
+                                </li>
+                                <li class="card-list-item">
+                                    <a href="#" class="card-list-link">“栏目文章标题占位内容”展现农大担当：我校师生服务首都志愿活动</a>
+                                    <span class="card-list-date">05-16</span>
+                                </li>
+                                <li class="card-list-item">
+                                    <a href="#" class="card-list-link">“栏目文章标题占位内容”构建双向协同育人：大思政课走入北京社区</a>
+                                    <span class="card-list-date">05-14</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 模块 4：校园动态 -->
+                    <div class="card-module campus">
+                        <div class="section-title-bar">
+                            <h3>校园动态</h3>
+                            <a href="#" class="card-more-btn">查看更多 &raquo;</a>
+                        </div>
+                        <div class="card-content-layout">
+                            <!-- 1 个小图片占位区域 -->
+                            <div class="small-image-placeholder" title="校园动态图片占位">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+                                    <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+                                </svg>
+                                <span>[ 校园动态图片占位 ]</span>
+                            </div>
+                            <!-- 3-5 条文字列表占位 -->
+                            <ul class="card-list">
+                                <li class="card-list-item">
+                                    <a href="#" class="card-list-link">“栏目文章标题占位内容”我校大思政校园文化节成果展圆满举办</a>
+                                    <span class="card-list-date">05-20</span>
+                                </li>
+                                <li class="card-list-item">
+                                    <a href="#" class="card-list-link">“栏目文章标题占位内容”新任辅导员入职宣誓仪式暨思想政治工作培训</a>
+                                    <span class="card-list-date">05-19</span>
+                                </li>
+                                <li class="card-list-item">
+                                    <a href="#" class="card-list-link">“栏目文章标题占位内容”强农先锋情景话剧在礼堂精彩巡演</a>
+                                    <span class="card-list-date">05-17</span>
+                                </li>
+                                <li class="card-list-item">
+                                    <a href="#" class="card-list-link">“栏目文章标题占位内容”我校微党课作品在首都高校比赛中荣获佳绩</a>
+                                    <span class="card-list-date">05-15</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. 平台特色展示区 -->
+        <section class="features-section">
+            <div class="container">
+                <div class="section-title-bar">
+                    <h3>平台特色</h3>
+                </div>
+                <!-- 4 个特色展示卡片 -->
+                <div class="features-grid">
+                    
+                    <!-- 卡片 1 -->
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper" title="理论学习资源图标">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0-2-.9-2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
+                            </svg>
+                        </div>
+                        <h4>理论学习资源</h4>
+                        <p>[ 简短说明占位 ] 提供最前沿、体系化的思政理论学习资源，包括权威文献、精品微课及大纲导读等，便于师生利用碎片化时间自主充电。</p>
+                    </div>
+
+                    <!-- 卡片 2 -->
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper" title="首都红色资源图标">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6h-5.6z"/>
+                            </svg>
+                        </div>
+                        <h4>首都红色资源</h4>
+                        <p>[ 简短说明占位 ] 深度融入北京市红色实践地图，依托数字技术建立虚拟红色展馆，让历史遗迹化为润物无声的大思政教学场景。</p>
+                    </div>
+
+                    <!-- 卡片 3 -->
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper" title="农大实践育人图标">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                            </svg>
+                        </div>
+                        <h4>农大实践育人</h4>
+                        <p>[ 简短说明占位 ] 充分结合科技小院、乡村振兴工作站，在田野耕作与科技下乡实践中锻炼青年学生，深化爱国爱农的情怀印记。</p>
+                    </div>
+
+                    <!-- 卡片 4 -->
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper" title="青年成长展示图标">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/>
+                            </svg>
+                        </div>
+                        <h4>青年成长展示</h4>
+                        <p>[ 简短说明占位 ] 聚焦身边典型，讲述农大青年在基层奋斗、参军报国、科研攻关一线的闪光足迹，用同辈榜样激励青年成长。</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. 学习资源入口（新增） -->
+        <section class="resource-portal-section">
+            <div class="container">
+                <div class="section-title-bar">
+                    <h3>学习资源入口</h3>
+                </div>
+                <div class="resource-grid">
+                    
+                    <!-- 入口 1 -->
+                    <div class="resource-card card-xuexi">
+                        <div class="resource-header">
+                            <div class="resource-logo-box">
+                                <span class="text-logo">学习<br>强国</span>
+                            </div>
+                            <h4>学习强国专题入口</h4>
+                        </div>
+                        <p class="resource-desc">[资源链接占位] 全面对接中宣部“学习强国”思想理论平台，为师生提供最权威的党的创新理论成果与时政解读。</p>
+                        <a href="#" class="resource-link-btn">进入学习 &raquo;</a>
+                    </div>
+
+                    <!-- 入口 2 -->
+                    <div class="resource-card card-people">
+                        <div class="resource-header">
+                            <div class="resource-logo-box">
+                                <span class="text-logo">人民<br>理论</span>
+                            </div>
+                            <h4>人民网理论学习</h4>
+                        </div>
+                        <p class="resource-desc">[资源链接占位] 汇聚人民网理论频道、思政云课堂资源，提供最新权威社论、时政要闻与大思政教学研究库。</p>
+                        <a href="#" class="resource-link-btn">进入学习 &raquo;</a>
+                    </div>
+
+                    <!-- 入口 3 -->
+                    <div class="resource-card card-xinhua">
+                        <div class="resource-header">
+                            <div class="resource-logo-box">
+                                <span class="text-logo">新华<br>时政</span>
+                            </div>
+                            <h4>新华网时政要闻</h4>
+                        </div>
+                        <p class="resource-desc">[资源链接占位] 连接新华网时政频道及重大专题，实时传递国内外时事热点动态，拓宽思政课家国视野。</p>
+                        <a href="#" class="resource-link-btn">进入学习 &raquo;</a>
+                    </div>
+
+                    <!-- 入口 4 -->
+                    <div class="resource-card card-cau">
+                        <div class="resource-header">
+                            <div class="resource-logo-box">
+                                <span class="text-logo">农大<br>新闻</span>
+                            </div>
+                            <h4>中国农业大学新闻网</h4>
+                        </div>
+                        <p class="resource-desc">[资源链接占位] 追踪中国农业大学校内的重大教学科研成果、实践活动快讯与校园理论学习动态。</p>
+                        <a href="#" class="resource-link-btn">进入学习 &raquo;</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 9. 页脚区域 -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-info">
+                    <h4>中国农业大学“耘思”大思政平台</h4>
+                    <p>页面内容为原型展示，占位内容后续完善。本项目为比赛答辩展示静态原型。旨在为思政教育提供数字化、实践化的平台样板，弘扬农大“知农爱农、强农兴农”精神，以红色信仰赋能青年学子健康成长。</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-link-group">
+                        <h5>相关链接</h5>
+                        <ul>
+                            <li><a href="#">中国农业大学官网</a></li>
+                            <li><a href="#">学习强国理论平台</a></li>
+                            <li><a href="#">人民网·思想理论</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-link-group">
+                        <h5>平台指南</h5>
+                        <ul>
+                            <li><a href="#">使用说明</a></li>
+                            <li><a href="#">开发致谢</a></li>
+                            <li><a href="#">免责声明</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    <span class="disclaimer">⚠️ 特别声明：本页面为比赛答辩展示原型，不代表正式上线平台。</span>
+                    <span>&copy; 2026 中国农业大学“耘思”大思政平台. 保留所有权利.</span>
+                </div>
+                <div class="footer-bottom-right">
+                    <span>技术支持：耘思平台答辩项目组</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 引入自定义交互脚本 -->
+    <script src="js/main.js"></script>
+</body>
+</html>

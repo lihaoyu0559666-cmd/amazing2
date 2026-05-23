@@ -114,25 +114,34 @@
         }
     </style>
 </head>
-<body>
+<body class="bg-wheat-pattern">
+
+    <!-- 1. 顶部细小信息栏 -->
+    <div class="top-info-bar">
+        <div class="container">
+            <div class="left-info">
+                <span class="badge">内容详情</span>
+                <span>中国农业大学“耘思”大思政平台 - 学习资源库</span>
+            </div>
+            <div class="right-info" id="current-date">学习强农 · 耘思育人</div>
+        </div>
+    </div>
 
     <!-- 顶栏保留LOGO和返回链接 -->
-    <header class="main-header" style="padding: 15px 0; background: #ffffff; border-bottom: 1px solid #eaeaea; box-shadow: none;">
+    <header class="main-header" style="padding: 24px 0;">
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
             <div class="header-logo-area">
-                <div class="logo-circle" style="background: #a61e22; width: 40px; height: 40px;">
-                    <svg viewBox="0 0 24 24" style="fill: #ffffff">
-                        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
-                        <path d="M19 12.35l-7 3.82-7-3.82V17l7 3.82 7-3.82v-4.65z"/>
-                    </svg>
+                <!-- 中国农业大学官方校徽 -->
+                <div class="logo-circle" title="中国农业大学校徽" style="width: 50px; height: 50px; border: 2px solid var(--accent-gold); background-color: #FFFFFF;">
+                    <img src="images/cau_logo.png" alt="中国农业大学校徽" style="width: 100%; height: 100%; object-fit: contain; transform: scale(1.35);">
                 </div>
                 <div class="header-text-group">
-                    <h1 class="platform-logo-title" style="color: #333333; font-size: 1.4rem;">中国农业大学“耘思”大思政平台</h1>
+                    <h1 class="platform-logo-title" style="font-size: 1.8rem; color: #ffffff;">中国农业大学<br>“耘思”大思政平台</h1>
                 </div>
             </div>
             <div>
-                <a href="javascript:goBack()" style="background: #a61e22; color: #ffffff; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: 600;">
-                    返回平台
+                <a href="javascript:goBack()" class="header-btn-link" style="width: auto; padding: 10px 24px; font-size: 0.9rem;">
+                    返回平台 &raquo;
                 </a>
             </div>
         </div>
@@ -140,7 +149,7 @@
 
     <div class="more-container">
         <!-- 返回面包屑 -->
-        <a href="javascript:goBack()" class="back-btn-link">
+        <a href="javascript:goBack()" class="back-btn-link" style="margin-left: 10px;">
             <svg style="width: 18px; height: 18px; fill: currentColor;" viewBox="0 0 24 24">
                 <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
             </svg>
@@ -148,13 +157,13 @@
         </a>
 
         <!-- 列表卡片 -->
-        <div class="list-card">
-            <div class="list-header">
+        <div class="list-card" style="padding: 30px;">
+            <div class="list-header" style="border-bottom: 2px solid var(--primary-red); padding-bottom: 16px; margin-bottom: 25px;">
                 <div>
                     <h2 id="page-title">数据加载中...</h2>
                     <div class="subtitle" id="page-subtitle">展示当前库的剩余文章与资料内容</div>
                 </div>
-                <span style="font-size: 0.85rem; color: #999;">⚠️ 提示：只展示文字与外部链接</span>
+                <span style="font-size: 0.85rem; color: #999; font-weight: 500;">⚠️ 提示：点击列表标题可跳转查看详情</span>
             </div>
 
             <!-- 文章列表 -->
@@ -173,7 +182,7 @@
 
     <!-- 载入四大板块公用数据源 -->
     <script src="data/theory.js"></script>
-    <script src="data/agriculture.js"></script>
+    <script src="data/agriculture.js?v=1.1"></script>
     <script src="data/practice.js"></script>
     <script src="data/campus.js"></script>
 
@@ -254,17 +263,18 @@
                 return;
             }
 
-            // 渲染剩余文章 (不放图片，仅文字列表和跳转超链接)
+            // 渲染剩余文章 (使用美化后的 card 与 序号标徽)
             let html = '';
-            remainingNews.forEach(item => {
+            remainingNews.forEach((item, index) => {
                 const targetUrl = item.url && item.url !== '#' ? item.url : '#';
                 const dateStr = item.date || '暂无日期';
                 
                 html += `
-                    <li class="list-li">
-                        <a href="${targetUrl}" target="_blank" class="list-li-title" title="${item.title}">${item.title}</a>
-                        <span class="list-li-source">${item.source}</span>
-                        <span class="list-li-date">${dateStr}</span>
+                    <li class="more-list-item">
+                        <span class="more-list-item-index">${index + 1}</span>
+                        <a href="${targetUrl}" target="_blank" class="list-li-title" title="${item.title}" style="font-weight: 700; color: var(--text-main); font-size: 1.05rem;">${item.title}</a>
+                        <span class="list-li-source" style="background-color: var(--primary-red-light); color: var(--primary-red); border: 1px solid var(--primary-red-border); padding: 3px 10px; border-radius: 4px; font-weight: 600; font-size: 0.85rem;">${item.source || '本站'}</span>
+                        <span class="list-li-date" style="color: var(--text-muted); font-size: 0.9rem; font-weight: 500;">${dateStr}</span>
                     </li>
                 `;
             });

@@ -1,5 +1,56 @@
 [
   {
+    "id": 201,
+    "title": "树立和践行正确政绩观学习教育",
+    "category": "学习",
+    "source": "求是网",
+    "date": "2026-05-23",
+    "summary": "树立和践行正确政绩观学习教育专题，推动党员干部学深悟透、知行合一。",
+    "url": "https://www.qstheory.cn/zt2026/zqzjg/index.htm",
+    "image": "images/auto/cover_news_common_201.jpg",
+    "isTop": true,
+    "isRecommend": true,
+    "tags": [
+      "正确政绩观",
+      "理论学习",
+      "专题教育"
+    ]
+  },
+  {
+    "id": 202,
+    "title": "深入学习贯彻习近平总书记给中国农业大学全体师生重要回信精神",
+    "category": "学习",
+    "source": "中国农业大学",
+    "date": "2026-05-23",
+    "summary": "贯彻落实习近平总书记给中国农业大学全体师生重要回信精神，厚植知农爱农情怀，汇聚强农兴农力量。",
+    "url": "https://huixin.cau.edu.cn/",
+    "image": "images/auto/cover_news_common_202.png",
+    "isTop": true,
+    "isRecommend": true,
+    "tags": [
+      "重要回信",
+      "农大精神",
+      "强农兴农"
+    ]
+  },
+  {
+    "id": 203,
+    "title": "深入学习贯彻习近平总书记给中国农业大学科技小院学生重要回信精神",
+    "category": "学习",
+    "source": "中国农业大学科技小院",
+    "date": "2026-05-23",
+    "summary": "深入学习习近平总书记给科技小院学生的重要回信精神，走进乡土中国深处，服务乡村振兴。",
+    "url": "https://xxhx.cau.edu.cn/",
+    "image": "images/auto/cover_news_common_203.jpg",
+    "isTop": true,
+    "isRecommend": true,
+    "tags": [
+      "科技小院",
+      "重要回信",
+      "实践育人"
+    ]
+  },
+  {
     "id": 21,
     "title": "《习近平新时代中国特色社会主义思想学习纲要》",
     "category": "学习",
@@ -8,7 +59,7 @@
     "summary": "学习习近平新时代中国特色社会主义思想的重要资料入口。",
     "url": "https://theory.people.com.cn/GB/68294/428935/index.html",
     "image": "images/auto/cover_news_common_21.jpg",
-    "isTop": false,
+    "isTop": true,
     "isRecommend": true,
     "tags": [
       "理论学习",
@@ -25,12 +76,114 @@
     "summary": "集中展示理论学习重点数字图书，适合作为学习资源入口。",
     "url": "https://theory.people.com.cn/GB/68294/427900/index.html",
     "image": "images/auto/cover_news_common_22.jpg",
-    "isTop": false,
+    "isTop": true,
     "isRecommend": true,
     "tags": [
       "数字图书",
       "理论学习",
       "学习资源"
+    ]
+  },
+  {
+    "id": 25,
+    "title": "人民思政数据库",
+    "category": "学习",
+    "source": "人民网",
+    "date": "长期更新",
+    "summary": "面向课程思政和专业思政的资源数据库，可作为平台学习资源入口。",
+    "url": "https://data.people.com.cn/pd/rmszsjk",
+    "image": "images/auto/cover_news_common_25.jpg",
+    "isTop": false,
+    "isRecommend": true,
+    "tags": [
+      "思政资源",
+      "课程思政",
+      "数据库"
+    ]
+  },
+  {
+    "id": 29,
+    "title": "增强思政引领力 激发青年学子爱国情强国志报国行",
+    "category": "学习",
+    "source": "人民网教育频道",
+    "date": "2025-01-03",
+    "summary": "围绕青年学生思政引领、爱国情怀与强国志向展开。",
+    "url": "https://edu.people.com.cn/n1/2025/0103/c1006-40394896.html",
+    "image": "images/auto/cover_news_common_29.jpg",
+    "isTop": false,
+    "isRecommend": false,
+    "tags": [
+      "青年学生",
+      "思政引领",
+      "爱国教育"
+    ]
+  },
+  {
+    "id": 30,
+    "title": "加快促进思政课堂与社会课堂有效融合",
+    "category": "学习",
+    "source": "人民论坛网",
+    "date": "2025-11-19",
+    "summary": "讨论思政课堂与社会课堂融合，适合作为大思政平台方法论资料。",
+    "url": "https://paper.people.com.cn/rmlt/pc/content/202511/19/content_30125615.html",
+    "image": "images/auto/cover_news_common_30.jpg",
+    "isTop": false,
+    "isRecommend": false,
+    "tags": [
+      "大思政课",
+      "社会课堂",
+      "融合育人"
+    ]
+  },
+  {
+    "id": 26,
+    "title": "扎实推进乡村全面振兴的根本遵循",
+    "category": "学习",
+    "source": "人民网理论频道",
+    "date": "2025-04-18",
+    "summary": "围绕乡村全面振兴的理论阐释，适合强农兴农专题学习。",
+    "url": "https://theory.people.com.cn/n1/2025/0418/c40531-40462906.html",
+    "image": "",
+    "isTop": false,
+    "isRecommend": true,
+    "tags": [
+      "乡村振兴",
+      "理论学习",
+      "三农"
+    ]
+  },
+  {
+    "id": 27,
+    "title": "以进一步全面深化改革推进农业农村现代化",
+    "category": "学习",
+    "source": "人民网理论频道",
+    "date": "2025-06-05",
+    "summary": "从深化改革角度阐释农业农村现代化建设。",
+    "url": "https://theory.people.com.cn/n1/2025/0605/c40531-40494273.html",
+    "image": "",
+    "isTop": false,
+    "isRecommend": false,
+    "tags": [
+      "农业农村现代化",
+      "深化改革",
+      "理论学习"
+    ]
+  },
+  {
+    "id": 28,
+    "title": "让思政课文化底蕴更加丰厚",
+    "category": "学习",
+    "source": "人民网理论频道",
+    "date": "2025-04-22",
+    "summary": "讨论思政课文化底蕴建设，适合放入理论学习栏目。",
+    "url": "https://theory.people.com.cn/n1/2025/0422/c40531-40465174.html",
+    "image": "",
+    "isTop": false,
+    "isRecommend": false,
+    "tags": [
+      "思政课",
+      "文化育人",
+      "理论文章"
     ]
   },
   {
@@ -68,105 +221,489 @@
     ]
   },
   {
-    "id": 25,
-    "title": "人民思政数据库",
-    "category": "学习",
+    "id": 408,
+    "site": "中国农业大学新闻网",
+    "source": "中国农业大学新闻网",
+    "title": "2026WAFI畜牧科技创新论坛启动会在成都举行",
+    "date": "2026-05-22",
+    "url": "https://news.cau.edu.cn/jcdt/3b37feaf19b546a48e3ceccec638c5d5.htm",
+    "summary": "2026WAFI畜牧科技创新论坛启动会在成都正式召开，共商畜牧业科技创新、种业攻坚与产学研合作新思路。",
+    "category": "要闻",
+    "tags": [
+      "畜牧科技",
+      "wafi论坛",
+      "种业发展"
+    ],
+    "image": "images/auto/cover_news_common_408.png",
+    "isTop": true,
+    "isRecommend": true
+  },
+  {
+    "id": 407,
+    "site": "中国农业大学新闻网",
+    "source": "中国农业大学新闻网",
+    "title": "校团委“青思铸魂”思想引领行动举办系列专题学习会 推动理论学习入脑入心",
+    "date": "2026-05-22",
+    "url": "https://news.cau.edu.cn/jcdt/88e640c60ed6443a94f56b9ba1d53733.htm",
+    "summary": "中国农业大学校团委紧扣青年发展大局，举办思想引领系列专题学习会，推动重要精神入脑入心。",
+    "category": "要闻",
+    "tags": [
+      "思想引领",
+      "校团委工作",
+      "青年担当"
+    ],
+    "image": "images/auto/cover_news_common_407.png",
+    "isTop": true,
+    "isRecommend": true
+  },
+  {
+    "id": 405,
+    "site": "新京报",
+    "source": "新京报",
+    "title": "播种机器人、嫁接机器人、糖度检测仪……科技赋能大兴西瓜节",
+    "date": "2026-05-23 17:13",
+    "url": "https://www.bjnews.com.cn/detail/1779524655129802.html",
+    "summary": "第38届北京大兴西瓜节拉开帷幕，播种机器人、嫁接机器人、糖度检测仪等一系列农业黑科技设备亮相大展风采。",
+    "category": "要闻",
+    "tags": [
+      "科技农业",
+      "大兴西瓜节",
+      "智慧种植"
+    ],
+    "image": "",
+    "isTop": false,
+    "isRecommend": true
+  },
+  {
+    "id": 406,
+    "site": "新京报",
+    "source": "新京报",
+    "title": "征服了欧洲和北美社会所有阶层的马铃薯，是何时引入中国的呢？",
+    "date": "2026-05-23 17:11",
+    "url": "https://www.bjnews.com.cn/detail/1779527473169840.html",
+    "summary": "文章围绕马铃薯的全球作物传播史进行科普，重点剖析了马铃薯引入中国的时间节点与核心地理路径。",
+    "category": "要闻",
+    "tags": [
+      "农史科普",
+      "马铃薯传播",
+      "农业历史"
+    ],
+    "image": "",
+    "isTop": false,
+    "isRecommend": true
+  },
+  {
+    "id": 401,
+    "site": "人民网",
     "source": "人民网",
-    "date": "长期更新",
-    "summary": "面向课程思政和专业思政的资源数据库，可作为平台学习资源入口。",
-    "url": "https://data.people.com.cn/pd/rmszsjk",
-    "image": "images/auto/cover_news_common_25.jpg",
-    "isTop": false,
-    "isRecommend": true,
+    "title": "国家防总针对湖北、重庆启动防汛四级应急响应",
+    "date": "2026-05-23",
+    "url": "https://society.people.com.cn/n1/2026/0523/c1008-40725910.html",
+    "summary": "根据降雨和江河汛情，国家防总针对湖北、重庆两省市启动防汛四级应急响应，指导防汛减灾工作。",
+    "category": "要闻",
     "tags": [
-      "思政资源",
-      "课程思政",
-      "数据库"
-    ]
+      "防汛响应",
+      "应急抢险",
+      "防灾减灾"
+    ],
+    "image": "",
+    "isTop": false,
+    "isRecommend": true
   },
   {
-    "id": 26,
-    "title": "扎实推进乡村全面振兴的根本遵循",
-    "category": "学习",
-    "source": "人民网理论频道",
-    "date": "2025-04-18",
-    "summary": "围绕乡村全面振兴的理论阐释，适合强农兴农专题学习。",
-    "url": "https://theory.people.com.cn/n1/2025/0418/c40531-40462906.html",
-    "image": "images/auto/cover_news_common_26.jpg",
-    "isTop": false,
-    "isRecommend": true,
+    "id": 402,
+    "site": "人民网",
+    "source": "人民网",
+    "title": "中国驻泰使馆：4名失联中国公民已找到",
+    "date": "2026-05-23 13:28",
+    "url": "https://world.people.com.cn/n1/2026/0523/c1002-40725900.html",
+    "summary": "中国驻泰国大使馆通报，在泰国普吉附近海域失联的4名中国公民已全部找到并获得安全安置。",
+    "category": "要闻",
     "tags": [
-      "乡村振兴",
+      "领事保护",
+      "使馆通报",
+      "出境安全"
+    ],
+    "image": "",
+    "isTop": false,
+    "isRecommend": true
+  },
+  {
+    "id": 403,
+    "site": "新华网",
+    "source": "新华网",
+    "title": "韩国总统说将坚定不移走韩朝和平共存与共同发展的道路",
+    "date": "2026-05-23 17:11:33",
+    "url": "https://www.xinhuanet.com/20260523/9fc91c9fb15f48068a7c18cc9e3336fd/c.html",
+    "summary": "韩国总统李在明在公开演说中表示，将坚定不移推进韩朝对话，谋求半岛和平共存与共同繁荣的合作道路。",
+    "category": "要闻",
+    "tags": [
+      "国际政要",
+      "半岛局势",
+      "和平共存"
+    ],
+    "image": "",
+    "isTop": false,
+    "isRecommend": true
+  },
+  {
+    "id": 404,
+    "site": "新华网",
+    "source": "新华网",
+    "title": "美国夏威夷发生6.0级地震",
+    "date": "2026-05-23 16:59:42",
+    "url": "https://www.xinhuanet.com/20260523/5f654ba3bbee438e81aa72b9f2c51572/c.html",
+    "summary": "据美国地质调查局测定，美国夏威夷霍瑙瑙-纳波奥波奥以南发生6.0级地震，目前尚无严重伤亡报告。",
+    "category": "要闻",
+    "tags": [
+      "国际地震",
+      "自然灾害",
+      "夏威夷"
+    ],
+    "image": "",
+    "isTop": false,
+    "isRecommend": false
+  },
+  {
+    "id": 309,
+    "site": "中国农业大学新闻网",
+    "source": "中国农业大学新闻网",
+    "title": "喜报 | 动科学院学子在第一届“嘉吉杯”智慧牧业大学生创新竞赛中斩获佳绩",
+    "date": "2026-05-22",
+    "url": "https://news.cau.edu.cn/zhxwnew/5f825eb21d954ca7aa44c80243636043.htm",
+    "summary": "动科学院学生在第一届“嘉吉杯”智慧牧业大学生创新竞赛决赛中获得一等奖、三等奖等成绩。",
+    "category": "学校",
+    "tags": [
+      "学生竞赛",
+      "动科学院",
+      "智慧牧业"
+    ],
+    "image": "images/auto/cover_news_common_309.jpg",
+    "isTop": true,
+    "isRecommend": true
+  },
+  {
+    "id": 304,
+    "site": "中国农业大学新闻网",
+    "source": "中国农业大学新闻网",
+    "title": "学校党委常委会专题学习习近平总书记关于推动哲学社会科学高质量发展的重要指示精神",
+    "date": "2026-05-21",
+    "url": "https://news.cau.edu.cn/ttgznew/ab44b2e6ef034fcbaf527522d229b0c3.htm",
+    "summary": "学校党委常委会专题学习习近平总书记关于推动哲学社会科学高质量发展的重要指示精神，研究部署贯彻落实工作。",
+    "category": "学校",
+    "tags": [
+      "哲学社会科学",
       "理论学习",
-      "三农"
-    ]
+      "党委工作"
+    ],
+    "image": "images/auto/cover_news_common_304.jpg",
+    "isTop": true,
+    "isRecommend": true
   },
   {
-    "id": 27,
-    "title": "以进一步全面深化改革推进农业农村现代化",
-    "category": "学习",
-    "source": "人民网理论频道",
-    "date": "2025-06-05",
-    "summary": "从深化改革角度阐释农业农村现代化建设。",
-    "url": "https://theory.people.com.cn/n1/2025/0605/c40531-40494273.html",
-    "image": "images/auto/cover_news_common_27.jpg",
-    "isTop": false,
-    "isRecommend": false,
+    "id": 301,
+    "site": "中国农业大学新闻网",
+    "source": "中国农业大学新闻网",
+    "title": "学校召开第四届党委第九轮内部巡视工作动员部署会",
+    "date": "2026-05-22",
+    "url": "https://news.cau.edu.cn/ttgznew/02f2dd94216b454296ea7b35a580c4fc.htm",
+    "summary": "中国农业大学党委召开第九轮内部巡视工作动员部署会，对校团委、校工会、继续教育学院等单位开展常规巡视作出部署。",
+    "category": "学校",
     "tags": [
-      "农业农村现代化",
-      "深化改革",
-      "理论学习"
-    ]
+      "党委工作",
+      "内部巡视",
+      "学校治理"
+    ],
+    "image": "images/auto/cover_news_common_301.jpg",
+    "isTop": true,
+    "isRecommend": true
   },
   {
-    "id": 28,
-    "title": "让思政课文化底蕴更加丰厚",
-    "category": "学习",
-    "source": "人民网理论频道",
-    "date": "2025-04-22",
-    "summary": "讨论思政课文化底蕴建设，适合放入理论学习栏目。",
-    "url": "https://theory.people.com.cn/n1/2025/0422/c40531-40465174.html",
-    "image": "images/auto/cover_news_common_28.jpg",
-    "isTop": false,
-    "isRecommend": false,
+    "id": 308,
+    "site": "中国农业大学新闻网",
+    "source": "中国农业大学新闻网",
+    "title": "赓续红色基因 讲好强农故事 中国农大学子在延河联盟讲解员大赛斩获佳绩",
+    "date": "2026-05-22",
+    "url": "https://news.cau.edu.cn/zhxwnew/7f2c88b52fcc4deaba2350e652ff1247.htm",
+    "summary": "中国农大学子参加第二届延河联盟高校讲解员大赛，围绕红色校史与强农故事开展展示并取得佳绩。",
+    "category": "学校",
     "tags": [
-      "思政课",
-      "文化育人",
-      "理论文章"
-    ]
+      "红色校史",
+      "学生风采",
+      "讲解大赛"
+    ],
+    "image": "images/auto/cover_news_common_308.jpg",
+    "isTop": true,
+    "isRecommend": true
   },
   {
-    "id": 29,
-    "title": "增强思政引领力 激发青年学子爱国情强国志报国行",
-    "category": "学习",
-    "source": "人民网教育频道",
-    "date": "2025-01-03",
-    "summary": "围绕青年学生思政引领、爱国情怀与强国志向展开。",
-    "url": "https://edu.people.com.cn/n1/2025/0103/c1006-40394896.html",
-    "image": "images/auto/cover_news_common_29.jpg",
-    "isTop": false,
-    "isRecommend": false,
+    "id": 307,
+    "site": "中国农业大学新闻网",
+    "source": "中国农业大学新闻网",
+    "title": "校长陈卫会见山东农业大学党委书记、校长一行",
+    "date": "2026-05-20",
+    "url": "https://news.cau.edu.cn/ttgznew/cdc8d8f7b93f4211ba4db69cf5a78c3d.htm",
+    "summary": "山东农业大学党委书记、校长一行来校访问，双方围绕对口帮扶合作等内容进行交流。",
+    "category": "学校",
     "tags": [
-      "青年学生",
-      "思政引领",
-      "爱国教育"
-    ]
+      "校际交流",
+      "对口帮扶",
+      "合作交流"
+    ],
+    "image": "images/auto/cover_news_common_307.jpg",
+    "isTop": true,
+    "isRecommend": true
   },
   {
-    "id": 30,
-    "title": "加快促进思政课堂与社会课堂有效融合",
-    "category": "学习",
-    "source": "人民论坛网",
-    "date": "2025-11-19",
-    "summary": "讨论思政课堂与社会课堂融合，适合作为大思政平台方法论资料。",
-    "url": "https://paper.people.com.cn/rmlt/pc/content/202511/19/content_30125615.html",
-    "image": "images/auto/cover_news_common_30.jpg",
-    "isTop": false,
-    "isRecommend": false,
+    "id": 302,
+    "site": "中国农业大学新闻网",
+    "source": "中国农业大学新闻网",
+    "title": "新闻发布厅 | 《科学》发表中国农大丁杨林/杨淑华团队研究成果：发现植物高温信号感知“纳米开关”",
+    "date": "2026-05-22",
+    "url": "https://news.cau.edu.cn/ttgznew/4dd4515f56394b5080ed521ab3756f75.htm",
+    "summary": "中国农大丁杨林、杨淑华教授团队在《科学》发表研究成果，揭示植物高温信号感知与耐热调控的新机制。",
+    "category": "学校",
     "tags": [
-      "大思政课",
-      "社会课堂",
-      "融合育人"
-    ]
+      "科研进展",
+      "高温信号",
+      "纳米开关"
+    ],
+    "image": "images/auto/cover_news_common_302.png",
+    "isTop": false,
+    "isRecommend": true
+  },
+  {
+    "id": 305,
+    "site": "中国农业大学新闻网",
+    "source": "中国农业大学新闻网",
+    "title": "新闻发布厅 | 《自然》发表中国农大秦峰团队研究成果 揭示玉米抗旱稳产新机制",
+    "date": "2026-05-21",
+    "url": "https://news.cau.edu.cn/ttgznew/a211ed60d4694af2a5ca21313e556693.htm",
+    "summary": "中国农业大学秦峰教授团队在《自然》发表研究成果，揭示玉米抗旱稳产相关新机制。",
+    "category": "学校",
+    "tags": [
+      "科研进展",
+      "玉米抗旱",
+      "稳产机制"
+    ],
+    "image": "images/auto/cover_news_common_305.png",
+    "isTop": false,
+    "isRecommend": true
+  },
+  {
+    "id": 310,
+    "site": "中国农业大学新闻网",
+    "source": "中国农业大学新闻网",
+    "title": "张永生副校长带队开展基坑气膜安全专项检查",
+    "date": "2026-05-22",
+    "url": "https://news.cau.edu.cn/zhxwnew/00943ad9bc7b488ebd1415b71dac5e09.htm",
+    "summary": "张永生副校长带队深入水利楼项目现场，对基坑气膜实施情况进行专项检查并部署安全生产工作。",
+    "category": "学校",
+    "tags": [
+      "安全检查",
+      "基建工程",
+      "安全生产"
+    ],
+    "image": "images/auto/cover_news_common_310.jpg",
+    "isTop": false,
+    "isRecommend": false
+  },
+  {
+    "id": 303,
+    "site": "中国农业大学新闻网",
+    "source": "中国农业大学新闻网",
+    "title": "学校党委常委会召开2026-18次会议",
+    "date": "2026-05-21",
+    "url": "https://news.cau.edu.cn/ttgznew/9684cc72aff54f07bbdbda0050b42cf3.htm",
+    "summary": "学校党委常委会召开会议，研究科技小院“出海计划”、自主科研经费项目及相关学校重点工作。",
+    "category": "学校",
+    "tags": [
+      "党委常委会",
+      "科技小院",
+      "学校工作"
+    ],
+    "image": "",
+    "isTop": false,
+    "isRecommend": false
+  },
+  {
+    "id": 306,
+    "site": "中国农业大学新闻网",
+    "source": "中国农业大学新闻网",
+    "title": "校长办公会召开第2026-16次会议",
+    "date": "2026-05-20",
+    "url": "https://news.cau.edu.cn/ttgznew/70bddb3809dd472dbdfcb6fc24f8c59d.htm",
+    "summary": "校长办公会研究校历、继续教育办学风险检查、自主科研经费项目及基本科研业务费立项等事项。",
+    "category": "学校",
+    "tags": [
+      "校长办公会",
+      "学校管理",
+      "科研经费"
+    ],
+    "image": "",
+    "isTop": false,
+    "isRecommend": false
+  },
+  {
+    "id": 505,
+    "site": "京报网",
+    "source": "京报网",
+    "title": "文博会北京展区十大打卡点，每个都出片！",
+    "date": "2026-05-23 15:36",
+    "url": "https://news.bjd.com.cn/2026/05/23/11762246.shtml",
+    "summary": "第二十二届深圳文博会北京展区集中展示数字文化、非遗技艺、京味文创等十大打卡点。",
+    "category": "北京",
+    "tags": [
+      "深圳文博会",
+      "北京展区",
+      "非遗文化"
+    ],
+    "image": "images/auto/cover_news_common_505.jpg",
+    "isTop": true,
+    "isRecommend": true
+  },
+  {
+    "id": 508,
+    "site": "北京时间",
+    "source": "北京时间",
+    "title": "请把话筒交给它们——",
+    "date": "未标明",
+    "url": "https://item.btime.com/4201oovvsk69jkr45p2ckbk8n1f",
+    "summary": "围绕国际生物多样性日，介绍昌平区野生动物、候鸟栖息、珍稀植物和生态保护成果。",
+    "category": "北京",
+    "tags": [
+      "生物多样性",
+      "生态保护",
+      "绿色北京"
+    ],
+    "image": "images/auto/cover_news_common_508.png",
+    "isTop": true,
+    "isRecommend": true
+  },
+  {
+    "id": 509,
+    "site": "北京时间",
+    "source": "北京时间",
+    "title": "速来！这个周末北京朝阳公园最好玩！",
+    "date": "未标明",
+    "url": "https://item.btime.com/f3go322oh4l8tb9s4aik66vlssc",
+    "summary": "介绍2026中国新文创市集暨潮玩游园会在北京朝阳公园的周末活动与特色文创内容。",
+    "category": "北京",
+    "tags": [
+      "新文创市集",
+      "朝阳公园",
+      "文旅活动"
+    ],
+    "image": "images/auto/cover_news_common_509.png",
+    "isTop": true,
+    "isRecommend": true
+  },
+  {
+    "id": 502,
+    "site": "新京报",
+    "source": "新京报",
+    "title": "征服了欧洲和北美社会所有阶层的马铃薯，是何时引入中国的呢？",
+    "date": "2026-05-23 17:11",
+    "url": "https://www.bjnews.com.cn/detail/1779527473169840.html",
+    "summary": "文章围绕马铃薯的全球传播史及其引入中国的时间与路径展开介绍。",
+    "category": "北京",
+    "tags": [
+      "马铃薯科普",
+      "农史介绍",
+      "作物传播"
+    ],
+    "image": "images/auto/cover_news_common_502.png",
+    "isTop": true,
+    "isRecommend": true
+  },
+  {
+    "id": 507,
+    "site": "北京时间",
+    "source": "北京时间",
+    "title": "山西省调集7支队伍共755人全力开展山西煤矿瓦斯爆炸事故救援",
+    "date": "未标明",
+    "url": "https://item.btime.com/66h45psfor31ucefi6slmhcbmj0",
+    "summary": "山西通洲集团留神峪煤矿瓦斯爆炸事故发生后，山西省调集救援、医疗等7支队伍755人开展救援处置。",
+    "category": "北京",
+    "tags": [
+      "煤矿救援",
+      "应急响应",
+      "安全生产"
+    ],
+    "image": "images/auto/cover_news_common_507.jpg",
+    "isTop": true,
+    "isRecommend": true
+  },
+  {
+    "id": 506,
+    "site": "京报网",
+    "source": "京报网",
+    "title": "北京养老服务地图上线！全市1500余家机构一键导航——",
+    "date": "2026-05-22 10:54",
+    "url": "https://news.bjd.com.cn/2026/05/22/11759460.shtml",
+    "summary": "北京养老服务地图1.0版上线，整合全市养老机构和社区养老服务驿站等1500余家服务设施。",
+    "category": "北京",
+    "tags": [
+      "养老地图",
+      "社会服务",
+      "便民导航"
+    ],
+    "image": "images/auto/cover_news_common_506.jpg",
+    "isTop": false,
+    "isRecommend": true
+  },
+  {
+    "id": 501,
+    "site": "新京报",
+    "source": "新京报",
+    "title": "播种机器人、嫁接机器人、糖度检测仪……科技赋能大兴西瓜节",
+    "date": "2026-05-23 17:13",
+    "url": "https://www.bjnews.com.cn/detail/1779524655129802.html",
+    "summary": "第38届北京大兴西瓜节开幕，播种机器人、嫁接机器人、糖度检测仪等科技设备赋能西甜瓜产业高质量发展。",
+    "category": "北京",
+    "tags": [
+      "大兴西瓜节",
+      "科技农业",
+      "智慧种植"
+    ],
+    "image": "images/auto/cover_news_common_501.jpg",
+    "isTop": false,
+    "isRecommend": true
+  },
+  {
+    "id": 503,
+    "site": "新京报",
+    "source": "新京报",
+    "title": "韩国总统李在明：将坚定不移走韩朝和平共存与共同发展的道路",
+    "date": "2026-05-23 17:10",
+    "url": "https://www.bjnews.com.cn/detail/1779527354129836.html",
+    "summary": "韩国总统李在明表示，将坚定不移地走韩朝和平共存与共同发展的道路。",
+    "category": "北京",
+    "tags": [
+      "国际形势",
+      "半岛合作",
+      "和平共存"
+    ],
+    "image": "",
+    "isTop": false,
+    "isRecommend": false
+  },
+  {
+    "id": 504,
+    "site": "京报网",
+    "source": "京报网",
+    "title": "京津冀三地协同发展迈上新台阶",
+    "date": "2026-05-23 07:02",
+    "url": "https://news.bjd.com.cn/2026/05/23/11761317.shtml",
+    "summary": "城市副中心规划建设十周年京津冀协同发展专场新闻发布会展示交通、产业、民生等领域协同发展成效。",
+    "category": "北京",
+    "tags": [
+      "京津冀协同",
+      "城市建设",
+      "区域协同"
+    ],
+    "image": "",
+    "isTop": false,
+    "isRecommend": false
   }
 ]

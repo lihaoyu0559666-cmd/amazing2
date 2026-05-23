@@ -5,26 +5,355 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>每日答题 - 中国农业大学“耘思”大思政平台</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 答题卡片扩展样式 */
+        .quiz-option-item {
+            cursor: pointer;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #2d3748;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+        
+        .quiz-option-item:hover {
+            border-color: #a61e22;
+            background-color: #fff9f9;
+        }
+
+        .quiz-option-item.selected {
+            background-color: #f7e8e9;
+            border-color: #a61e22;
+            color: #a61e22;
+            font-weight: 600;
+        }
+
+        /* 单选多选图标 */
+        .option-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+            font-size: 10px;
+        }
+
+        .quiz-option-item.selected .option-icon {
+            border-color: #a61e22;
+            background-color: #a61e22;
+            color: #ffffff;
+        }
+
+        .quiz-option-item.selected .option-icon::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            display: block;
+        }
+
+        /* 多选框图标（方形） */
+        .quiz-option-item.multiple-type .option-icon {
+            border-radius: 4px;
+        }
+
+        .quiz-option-item.multiple-type.selected .option-icon::after {
+            content: '✓';
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: bold;
+            background: transparent;
+            border-radius: 0;
+        }
+
+        /* 答对与答错的反馈样式 */
+        .quiz-option-item.correct {
+            border-color: #319795 !important;
+            background-color: #e6fffa !important;
+            color: #234e52 !important;
+        }
+
+        .quiz-option-item.correct .option-icon {
+            border-color: #319795 !important;
+            background-color: #319795 !important;
+        }
+
+        .quiz-option-item.correct .option-icon::after {
+            content: '✓' !important;
+            color: #ffffff !important;
+            font-size: 12px !important;
+            font-weight: bold !important;
+            background: transparent !important;
+            border-radius: 0 !important;
+        }
+
+        .quiz-option-item.wrong {
+            border-color: #e53e3e !important;
+            background-color: #fff5f5 !important;
+            color: #742a2a !important;
+        }
+
+        .quiz-option-item.wrong .option-icon {
+            border-color: #e53e3e !important;
+            background-color: #e53e3e !important;
+        }
+
+        .quiz-option-item.wrong .option-icon::after {
+            content: '✗' !important;
+            color: #ffffff !important;
+            font-size: 12px !important;
+            font-weight: bold !important;
+            background: transparent !important;
+            border-radius: 0 !important;
+        }
+
+        /* 应该选但没选中的多选项 */
+        .quiz-option-item.should-have-selected {
+            border-color: #319795 !important;
+            border-style: dashed !important;
+        }
+
+        /* 填空题输入框 */
+        .quiz-fill-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .quiz-fill-input:focus {
+            border-color: #a61e22;
+            box-shadow: 0 0 0 3px rgba(166, 30, 34, 0.15);
+        }
+
+        .quiz-fill-input.correct {
+            border-color: #319795;
+            background-color: #e6fffa;
+        }
+
+        .quiz-fill-input.wrong {
+            border-color: #e53e3e;
+            background-color: #fff5f5;
+        }
+
+        /* 填空题正确答案显示 */
+        .fill-correct-answer {
+            margin-top: 10px;
+            padding: 12px 18px;
+            background-color: #e6fffa;
+            border: 1px solid #b2f5ea;
+            border-radius: 6px;
+            color: #234e52;
+            font-size: 0.95rem;
+        }
+
+        /* 最终报告单样式 */
+        .quiz-report {
+            text-align: left;
+            margin-top: 30px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 30px;
+        }
+
+        .report-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .report-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .report-item {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 18px 24px;
+            transition: all 0.2s ease;
+        }
+
+        .report-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .report-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .report-question-title {
+            font-weight: 700;
+            color: #2d3748;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .report-status-badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .report-status-badge.correct {
+            background-color: #e6fffa;
+            color: #319795;
+            border: 1px solid #b2f5ea;
+        }
+
+        .report-status-badge.wrong {
+            background-color: #fff5f5;
+            color: #e53e3e;
+            border: 1px solid #fed7d7;
+        }
+
+        .report-detail-box {
+            font-size: 0.92rem;
+            color: #4a5568;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 12px;
+            background-color: #f7fafc;
+            border-radius: 6px;
+            border-left: 3px solid #cbd5e1;
+            margin-top: 8px;
+        }
+
+        .report-detail-box.correct {
+            border-left-color: #319795;
+        }
+
+        .report-detail-box.wrong {
+            border-left-color: #e53e3e;
+        }
+
+        .type-tag {
+            font-size: 0.75rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+            margin-right: 6px;
+        }
+        
+        .type-tag.single {
+            background-color: #ebf8ff;
+            color: #2b6cb0;
+            border: 1px solid #bee3f8;
+        }
+
+        .type-tag.multiple {
+            background-color: #faf5ff;
+            color: #6b46c1;
+            border: 1px solid #e9d8fd;
+        }
+
+        .type-tag.fill {
+            background-color: #fffaf0;
+            color: #dd6b20;
+            border: 1px solid #feebc8;
+        }
+
+        /* 炫酷得分仪表盘 */
+        .score-circle-wrapper {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .score-circle-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 10px solid #edf2f7;
+        }
+
+        .score-circle-fill {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 10px solid transparent;
+            border-top-color: #a61e22;
+            border-right-color: #a61e22;
+            transform: rotate(-45deg);
+        }
+
+        .score-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #a61e22;
+            position: relative;
+            z-index: 2;
+        }
+
+        .score-unit {
+            font-size: 1rem;
+            color: #718096;
+            font-weight: 600;
+        }
+    </style>
 </head>
-<body style="background-color: #f7fafc;">
+<body class="bg-wheat-pattern">
+
+    <!-- 1. 顶部细小信息栏 -->
+    <div class="top-info-bar">
+        <div class="container">
+            <div class="left-info">
+                <span class="badge">每日答题</span>
+                <span>中国农业大学“耘思”大思政平台 - 线上理论测试</span>
+            </div>
+            <div class="right-info" id="current-date">笃行致远 · 耘耕自强</div>
+        </div>
+    </div>
 
     <!-- 顶栏 -->
-    <header class="main-header" style="padding: 15px 0; background: #ffffff; border-bottom: 1px solid #eaeaea; box-shadow: none;">
+    <header class="main-header" style="padding: 24px 0;">
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
             <div class="header-logo-area">
-                <div class="logo-circle" style="background: #a61e22; width: 40px; height: 40px;">
-                    <svg viewBox="0 0 24 24" style="fill: #ffffff">
-                        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
-                        <path d="M19 12.35l-7 3.82-7-3.82V17l7 3.82 7-3.82v-4.65z"/>
-                    </svg>
+                <!-- 中国农业大学官方校徽 -->
+                <div class="logo-circle" title="中国农业大学校徽" style="width: 50px; height: 50px; border: 2px solid var(--accent-gold); background-color: #FFFFFF;">
+                    <img src="images/cau_logo.png" alt="中国农业大学校徽" style="width: 100%; height: 100%; object-fit: contain; transform: scale(1.35);">
                 </div>
                 <div class="header-text-group">
-                    <h1 class="platform-logo-title" style="color: #333333; font-size: 1.4rem;">中国农业大学“耘思”大思政平台</h1>
+                    <h1 class="platform-logo-title" style="font-size: 1.8rem; color: #ffffff;">中国农业大学<br>“耘思”大思政平台</h1>
                 </div>
             </div>
             <div>
-                <a href="javascript:goBack()" style="background: #a61e22; color: #ffffff; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: 600;">
-                    返回平台
+                <a href="javascript:goBack()" class="header-btn-link" style="width: auto; padding: 10px 24px; font-size: 0.9rem;">
+                    返回平台 &raquo;
                 </a>
             </div>
         </div>
@@ -32,7 +361,7 @@
 
     <div class="quiz-container">
         <!-- 返回面包屑 -->
-        <a href="javascript:goBack()" class="back-btn-link" style="display: inline-flex; align-items: center; gap: 8px; color: var(--primary-red); text-decoration: none; font-weight: 600; margin-bottom: 25px; transition: all 0.3s;">
+        <a href="javascript:goBack()" class="back-btn-link" style="display: inline-flex; align-items: center; gap: 8px; color: var(--primary-red); text-decoration: none; font-weight: 600; margin-bottom: 25px; transition: all 0.3s; margin-left: 10px;">
             <svg style="width: 18px; height: 18px; fill: currentColor;" viewBox="0 0 24 24">
                 <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
             </svg>
@@ -56,13 +385,21 @@
             <div id="quiz-content-area">
                 <div class="quiz-question-box">
                     <div class="quiz-question-title" id="question-title">题目加载中...</div>
+                    
+                    <!-- 填空题输入区（默认隐藏） -->
+                    <div id="fill-input-container" style="display: none; margin-top: 15px;">
+                        <input type="text" id="fill-input-field" class="quiz-fill-input" placeholder="请输入您的答案...">
+                        <div id="fill-correct-feedback" class="fill-correct-answer" style="display: none;"></div>
+                    </div>
+
+                    <!-- 选择题选项区 -->
                     <ul class="quiz-options-list" id="options-container">
                         <!-- 动态渲染选项 -->
                     </ul>
                 </div>
 
                 <!-- 答题反馈盒 -->
-                <div class="quiz-feedback-box" id="feedback-box">
+                <div class="quiz-feedback-box" id="feedback-box" style="display: none;">
                     <div class="quiz-feedback-status" id="feedback-status">回答正确</div>
                     <div class="quiz-feedback-text" id="feedback-text">这里是解析...</div>
                 </div>
@@ -75,16 +412,32 @@
                 </div>
             </div>
 
-            <!-- 完成结算面板 -->
-            <div id="quiz-result-area" style="display: none; text-align: center; padding: 40px 0;">
-                <svg viewBox="0 0 24 24" style="width: 80px; height: 80px; fill: #319795; margin-bottom: 20px;">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                </svg>
-                <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 10px;">答题挑战完成！</h3>
-                <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px;" id="result-score-text">您本次答对了 0 道题</p>
-                <div style="display: flex; gap: 15px; justify-content: center;">
+            <!-- 最终结算面板 -->
+            <div id="quiz-result-area" style="display: none; padding: 40px 0;">
+                <div class="score-circle-wrapper">
+                    <div class="score-circle-bg"></div>
+                    <div class="score-circle-fill" id="score-circle-fill"></div>
+                    <div class="score-number" id="score-number">0<span class="score-unit">分</span></div>
+                </div>
+                <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 10px; text-align: center;">答题挑战完成！</h3>
+                <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; text-align: center;" id="result-score-text">您本次答对了几道题</p>
+                
+                <div style="display: flex; gap: 15px; justify-content: center; margin-bottom: 30px;">
                     <button class="btn-outline-gray" onclick="restartQuiz()">重新挑战</button>
                     <button class="btn-primary-red" onclick="goBack()">返回平台</button>
+                </div>
+
+                <!-- 答题报告分析面板 -->
+                <div class="quiz-report" id="quiz-report-container">
+                    <h4 class="report-title">
+                        <svg viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: currentColor; vertical-align: middle;">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                        答题分析报告单
+                    </h4>
+                    <div class="report-list" id="report-items-wrapper">
+                        <!-- 动态渲染作答分析 -->
+                    </div>
                 </div>
             </div>
 
@@ -98,9 +451,6 @@
         </div>
     </footer>
 
-    <!-- 载入数据库 -->
-    <script src="data/quiz.js"></script>
-
     <script>
         // 智能回退
         function goBack() {
@@ -108,51 +458,168 @@
             if (referrer && (referrer.includes('main_admin') || referrer.includes('main_faculty') || referrer.includes('main_student'))) {
                 window.location.href = referrer;
             } else {
-                window.history.back();
+                const urlParams = new URLSearchParams(window.location.search);
+                const role = urlParams.get('role') || 'student';
+                window.location.href = `main_${role}.html`;
             }
         }
 
+        let rawQuestions = []; // 从JS文件中载入的全部题库
+        let activeQuizQuestions = []; // 按照 4单 + 3多 + 3填 动态组合出来的10道题
+        let userAnswers = {}; // 用户提交的答案，格式: { questionIndex: answer }
+        let questionResults = {}; // 用户作答对错，格式: { questionIndex: true/false }
+        
         let currentIndex = 0;
-        let selectedOption = null;
-        let score = 0;
+        let selectedOptionIndexes = []; // 多选题当前选中的选项索引数组
         let hasSubmitted = false;
 
         document.addEventListener('DOMContentLoaded', () => {
-            initQuiz();
+            loadRoleQuizData();
         });
 
-        function initQuiz() {
-            if (!window.quizData || window.quizData.length === 0) {
+        // 动态加载对应角色题库
+        function loadRoleQuizData() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const role = urlParams.get('role') || 'student';
+            
+            const script = document.createElement('script');
+            script.src = `data/quiz_${role}.js`;
+            script.onload = () => {
+                rawQuestions = window.quizData || [];
+                initQuiz();
+            };
+            script.onerror = () => {
                 document.getElementById('quiz-content-area').innerHTML = `
                     <div style="text-align:center; padding: 40px 0; color: var(--text-muted);">
                         <svg viewBox="0 0 24 24" style="width: 48px; height: 48px; fill: #cbd5e1; margin-bottom: 15px;">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
                         </svg>
-                        <p style="font-size:1.1rem; font-weight:600;">暂无题库数据</p>
-                        <span style="font-size:0.9rem;">题目正在录入中，敬请期待。</span>
+                        <p style="font-size:1.1rem; font-weight:600; color: #718096;">无法加载该角色的题库数据</p>
+                        <span style="font-size:0.9rem; color: #a0aec0;">请检查 data/quiz_${role}.js 文件是否成功导入。</span>
+                    </div>
+                `;
+                document.getElementById('progress-badge').textContent = '加载失败';
+            };
+            document.head.appendChild(script);
+        }
+
+        // 随机抽样
+        function getRandomElements(arr, n) {
+            const shuffled = [...arr].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, n);
+        }
+
+        // 洗牌打乱
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+        }
+
+        // 组合 4单 + 3多 + 3填 考卷
+        function initQuiz() {
+            if (rawQuestions.length === 0) {
+                document.getElementById('quiz-content-area').innerHTML = `
+                    <div style="text-align:center; padding: 40px 0; color: var(--text-muted);">
+                        <svg viewBox="0 0 24 24" style="width: 48px; height: 48px; fill: #cbd5e1; margin-bottom: 15px;">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                        </svg>
+                        <p style="font-size:1.1rem; font-weight:600; color: #718096;">暂无题库数据</p>
+                        <span style="font-size:0.9rem; color: #a0aec0;">题目正在录入中，敬请期待。</span>
                     </div>
                 `;
                 document.getElementById('progress-badge').textContent = '暂无题库';
                 return;
             }
+
+            const singles = rawQuestions.filter(q => q.type === 'single');
+            const multiples = rawQuestions.filter(q => q.type === 'multiple');
+            const fills = rawQuestions.filter(q => q.type === 'fill');
+
+            // 抽题：如果不够则有多少抽多少
+            const chosenSingles = getRandomElements(singles, 4);
+            const chosenMultiples = getRandomElements(multiples, 3);
+            const chosenFills = getRandomElements(fills, 3);
+
+            // 在各自题型内部洗牌以保证题目随机性，但整体顺序保持 单选 -> 多选 -> 填空
+            shuffleArray(chosenSingles);
+            shuffleArray(chosenMultiples);
+            shuffleArray(chosenFills);
+
+            activeQuizQuestions = [...chosenSingles, ...chosenMultiples, ...chosenFills];
+
+            userAnswers = {};
+            questionResults = {};
             loadQuestion(0);
         }
 
+        // 加载问题渲染
         function loadQuestion(index) {
             currentIndex = index;
-            selectedOption = null;
+            selectedOptionIndexes = [];
             hasSubmitted = false;
 
-            const q = window.quizData[index];
-            document.getElementById('progress-badge').textContent = `第 ${index + 1} / ${window.quizData.length} 题`;
-            document.getElementById('question-title').textContent = `${index + 1}. ${q.question}`;
+            const q = activeQuizQuestions[index];
+            document.getElementById('progress-badge').textContent = `第 ${index + 1} / ${activeQuizQuestions.length} 题`;
+
+            // 题型标签
+            let typeText = "单选题";
+            let typeClass = "single";
+            if (q.type === 'multiple') {
+                typeText = "多选题";
+                typeClass = "multiple";
+            } else if (q.type === 'fill') {
+                typeText = "填空题";
+                typeClass = "fill";
+            }
+            
+            document.getElementById('question-title').innerHTML = `
+                <span class="type-tag ${typeClass}">${typeText}</span>
+                ${q.question}
+            `;
 
             const optionsContainer = document.getElementById('options-container');
-            let html = '';
-            q.options.forEach((opt, idx) => {
-                html += `<li class="quiz-option-item" onclick="selectOption(${idx})" id="opt-${idx}">${opt}</li>`;
-            });
-            optionsContainer.innerHTML = html;
+            const fillContainer = document.getElementById('fill-input-container');
+            const fillField = document.getElementById('fill-input-field');
+            const fillFeedback = document.getElementById('fill-correct-feedback');
+
+            // 初始化或重置输入组件
+            if (q.type === 'fill') {
+                optionsContainer.style.display = 'none';
+                fillContainer.style.display = 'block';
+                fillField.value = '';
+                fillField.className = 'quiz-fill-input';
+                fillField.disabled = false;
+                fillFeedback.style.display = 'none';
+
+                // 输入事件侦听，启用提交按钮
+                fillField.oninput = () => {
+                    document.getElementById('submit-btn').disabled = fillField.value.trim() === '';
+                };
+
+                // 回车提交支持
+                fillField.onkeydown = (e) => {
+                    if (e.key === 'Enter' && !hasSubmitted && fillField.value.trim() !== '') {
+                        submitAnswer();
+                    }
+                };
+            } else {
+                fillContainer.style.display = 'none';
+                optionsContainer.style.display = 'block';
+
+                let html = '';
+                q.options.forEach((opt, idx) => {
+                    const extraClass = q.type === 'multiple' ? 'multiple-type' : '';
+                    html += `
+                        <li class="quiz-option-item ${extraClass}" onclick="selectOption(${idx})" id="opt-${idx}">
+                            <span class="option-icon"></span>
+                            <span>${opt}</span>
+                        </li>
+                    `;
+                });
+                optionsContainer.innerHTML = html;
+            }
 
             // 重置按钮和反馈框
             document.getElementById('submit-btn').style.display = 'block';
@@ -161,45 +628,114 @@
             document.getElementById('feedback-box').style.display = 'none';
         }
 
+        // 选择项事件处理
         function selectOption(index) {
             if (hasSubmitted) return;
 
-            selectedOption = index;
-            const items = document.querySelectorAll('.quiz-option-item');
-            items.forEach((item, idx) => {
-                if (idx === index) {
-                    item.classList.add('selected');
+            const q = activeQuizQuestions[currentIndex];
+
+            if (q.type === 'single') {
+                selectedOptionIndexes = [index];
+                const items = document.querySelectorAll('.quiz-option-item');
+                items.forEach((item, idx) => {
+                    if (idx === index) {
+                        item.classList.add('selected');
+                    } else {
+                        item.classList.remove('selected');
+                    }
+                });
+                document.getElementById('submit-btn').disabled = false;
+            } else if (q.type === 'multiple') {
+                // 切换多选状态
+                const optIndex = selectedOptionIndexes.indexOf(index);
+                const optEl = document.getElementById(`opt-${index}`);
+
+                if (optIndex > -1) {
+                    selectedOptionIndexes.splice(optIndex, 1);
+                    optEl.classList.remove('selected');
                 } else {
-                    item.classList.remove('selected');
+                    selectedOptionIndexes.push(index);
+                    optEl.classList.add('selected');
                 }
-            });
-            document.getElementById('submit-btn').disabled = false;
+                
+                document.getElementById('submit-btn').disabled = selectedOptionIndexes.length === 0;
+            }
         }
 
+        // 提交本题答案
         function submitAnswer() {
-            if (selectedOption === null || hasSubmitted) return;
+            if (hasSubmitted) return;
             hasSubmitted = true;
 
-            const q = window.quizData[currentIndex];
-            const isCorrect = selectedOption === q.answer;
-            
-            const selectedEl = document.getElementById(`opt-${selectedOption}`);
-            const correctEl = document.getElementById(`opt-${q.answer}`);
+            const q = activeQuizQuestions[currentIndex];
+            let isCorrect = false;
 
-            if (isCorrect) {
-                score++;
-                selectedEl.className = 'quiz-option-item correct';
-                showFeedback(true, q.analysis);
-            } else {
-                selectedEl.className = 'quiz-option-item wrong';
-                correctEl.className = 'quiz-option-item correct';
-                showFeedback(false, q.analysis);
+            if (q.type === 'single') {
+                const userAns = selectedOptionIndexes[0];
+                userAnswers[currentIndex] = userAns;
+                isCorrect = (userAns === q.answer);
+
+                const selectedEl = document.getElementById(`opt-${userAns}`);
+                const correctEl = document.getElementById(`opt-${q.answer}`);
+
+                if (isCorrect) {
+                    selectedEl.className = 'quiz-option-item correct';
+                } else {
+                    selectedEl.className = 'quiz-option-item wrong';
+                    if (correctEl) correctEl.className = 'quiz-option-item correct';
+                }
+            } else if (q.type === 'multiple') {
+                userAnswers[currentIndex] = [...selectedOptionIndexes];
+                
+                // 比对数组，确保元素一致
+                const sortedUser = [...selectedOptionIndexes].sort();
+                const sortedCorrect = [...q.answer].sort();
+                isCorrect = (sortedUser.length === sortedCorrect.length && sortedUser.every((v, i) => v === sortedCorrect[i]));
+
+                q.options.forEach((_, idx) => {
+                    const optEl = document.getElementById(`opt-${idx}`);
+                    const wasSelected = selectedOptionIndexes.includes(idx);
+                    const isRightOption = q.answer.includes(idx);
+
+                    if (wasSelected) {
+                        if (isRightOption) {
+                            optEl.className = 'quiz-option-item correct multiple-type';
+                        } else {
+                            optEl.className = 'quiz-option-item wrong multiple-type';
+                        }
+                    } else {
+                        if (isRightOption) {
+                            optEl.className = 'quiz-option-item should-have-selected multiple-type';
+                        }
+                    }
+                });
+            } else if (q.type === 'fill') {
+                const fillField = document.getElementById('fill-input-field');
+                const userText = fillField.value.trim();
+                userAnswers[currentIndex] = userText;
+                fillField.disabled = true;
+
+                // 填空题忽略首尾空格和大小写匹配
+                isCorrect = q.answer.some(ans => ans.trim().toLowerCase() === userText.toLowerCase());
+
+                if (isCorrect) {
+                    fillField.className = 'quiz-fill-input correct';
+                } else {
+                    fillField.className = 'quiz-fill-input wrong';
+                    const feedbackEl = document.getElementById('fill-correct-feedback');
+                    feedbackEl.textContent = `标准答案：${q.answer.join(' 或 ')}`;
+                    feedbackEl.style.display = 'block';
+                }
             }
+
+            questionResults[currentIndex] = isCorrect;
+            showFeedback(isCorrect, q.analysis);
 
             document.getElementById('submit-btn').style.display = 'none';
             document.getElementById('next-btn').style.display = 'block';
         }
 
+        // 即时解析提示
         function showFeedback(isCorrect, analysis) {
             const feedbackBox = document.getElementById('feedback-box');
             const statusEl = document.getElementById('feedback-status');
@@ -216,26 +752,101 @@
             feedbackBox.style.display = 'block';
         }
 
+        // 下一题或进入结算
         function nextQuestion() {
-            if (currentIndex + 1 < window.quizData.length) {
+            if (currentIndex + 1 < activeQuizQuestions.length) {
                 loadQuestion(currentIndex + 1);
             } else {
                 showResult();
             }
         }
 
+        // 最终报告结算与仪表盘呈现
         function showResult() {
             document.getElementById('quiz-content-area').style.display = 'none';
             document.getElementById('quiz-result-area').style.display = 'block';
             document.getElementById('progress-badge').textContent = '挑战结束';
-            document.getElementById('result-score-text').innerHTML = `答题结束！本次测试共 ${window.quizData.length} 题，您答对了 <strong style="color:var(--primary-red); font-size:1.4rem;">${score}</strong> 道题。`;
+
+            // 判分：每题10分
+            let correctCount = 0;
+            activeQuizQuestions.forEach((_, idx) => {
+                if (questionResults[idx] === true) correctCount++;
+            });
+            const score = correctCount * 10;
+
+            // 炫酷动态进度盘渲染
+            document.getElementById('score-number').innerHTML = `${score}<span class="score-unit">分</span>`;
+            const fillEl = document.getElementById('score-circle-fill');
+            const degree = (score / 100) * 360 - 45; // 折算旋转度数
+            fillEl.style.transform = `rotate(${degree}deg)`;
+
+            document.getElementById('result-score-text').innerHTML = `答题结束！本次测试共 ${activeQuizQuestions.length} 题，您答对了 <strong style="color:var(--primary-red); font-size:1.4rem;">${correctCount}</strong> 道题。`;
+
+            // 渲染错题解析报表单
+            const itemsWrapper = document.getElementById('report-items-wrapper');
+            let reportHtml = '';
+
+            activeQuizQuestions.forEach((q, idx) => {
+                const isCorrect = questionResults[idx];
+                const statusBadgeClass = isCorrect ? 'correct' : 'wrong';
+                const statusBadgeText = isCorrect ? '回答正确' : '回答错误';
+                const detailBoxClass = isCorrect ? 'correct' : 'wrong';
+
+                let typeText = "单选题";
+                let typeClass = "single";
+                if (q.type === 'multiple') {
+                    typeText = "多选题";
+                    typeClass = "multiple";
+                } else if (q.type === 'fill') {
+                    typeText = "填空题";
+                    typeClass = "fill";
+                }
+
+                // 翻译答案用于在报告中直观打印
+                let userAnsText = "";
+                let correctAnsText = "";
+
+                if (q.type === 'single') {
+                    const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+                    userAnsText = userAnswers[idx] !== undefined ? `${letters[userAnswers[idx]]}. ${q.options[userAnswers[idx]]}` : "未作答";
+                    correctAnsText = `${letters[q.answer]}. ${q.options[q.answer]}`;
+                } else if (q.type === 'multiple') {
+                    const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+                    userAnsText = userAnswers[idx] && userAnswers[idx].length > 0 
+                        ? userAnswers[idx].map(i => letters[i]).join(', ')
+                        : "未作答";
+                    correctAnsText = q.answer.map(i => letters[i]).join(', ');
+                } else if (q.type === 'fill') {
+                    userAnsText = userAnswers[idx] || "未作答";
+                    correctAnsText = q.answer.join(' 或 ');
+                }
+
+                reportHtml += `
+                    <div class="report-item">
+                        <div class="report-item-header">
+                            <div class="report-question-title">
+                                <span class="type-tag ${typeClass}">${typeText}</span>
+                                ${idx + 1}. ${q.question}
+                            </div>
+                            <span class="report-status-badge ${statusBadgeClass}">${statusBadgeText}</span>
+                        </div>
+                        <div class="report-detail-box ${detailBoxClass}">
+                            <div><strong>您的作答：</strong><span style="color: ${isCorrect ? '#234e52' : '#718096'}">${userAnsText}</span></div>
+                            ${!isCorrect ? `<div><strong>标准答案：</strong><span style="color: #234e52; font-weight: 700;">${correctAnsText}</span></div>` : ''}
+                            <div style="margin-top: 5px; font-size: 0.88rem; color: #718096;"><strong>题目解析：</strong>${q.analysis}</div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            itemsWrapper.innerHTML = reportHtml;
         }
 
+        // 重新挑战
         function restartQuiz() {
-            score = 0;
             document.getElementById('quiz-content-area').style.display = 'block';
             document.getElementById('quiz-result-area').style.display = 'none';
-            loadQuestion(0);
+            initQuiz();
         }
     </script>
 
