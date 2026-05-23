@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日答题 - 中国农业大学“耘思”大思政平台</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background-color: #f7fafc;">
+
+    <!-- 顶栏 -->
+    <header class="main-header" style="padding: 15px 0; background: #ffffff; border-bottom: 1px solid #eaeaea; box-shadow: none;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="header-logo-area">
+                <div class="logo-circle" style="background: #a61e22; width: 40px; height: 40px;">
+                    <svg viewBox="0 0 24 24" style="fill: #ffffff">
+                        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+                        <path d="M19 12.35l-7 3.82-7-3.82V17l7 3.82 7-3.82v-4.65z"/>
+                    </svg>
+                </div>
+                <div class="header-text-group">
+                    <h1 class="platform-logo-title" style="color: #333333; font-size: 1.4rem;">中国农业大学“耘思”大思政平台</h1>
+                </div>
+            </div>
+            <div>
+                <a href="javascript:goBack()" style="background: #a61e22; color: #ffffff; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: 600;">
+                    返回平台
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="quiz-container">
+        <!-- 返回面包屑 -->
+        <a href="javascript:goBack()" class="back-btn-link" style="display: inline-flex; align-items: center; gap: 8px; color: var(--primary-red); text-decoration: none; font-weight: 600; margin-bottom: 25px; transition: all 0.3s;">
+            <svg style="width: 18px; height: 18px; fill: currentColor;" viewBox="0 0 24 24">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+            返回上一页
+        </a>
+
+        <!-- 答题卡片 -->
+        <div class="learning-card">
+            <!-- 卡片头部 -->
+            <div class="learning-card-header">
+                <h2>
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                    <span>每日答题专区</span>
+                </h2>
+                <span class="learning-tag-badge" id="progress-badge">载入中...</span>
+            </div>
+
+            <!-- 问题展示盒 -->
+            <div id="quiz-content-area">
+                <div class="quiz-question-box">
+                    <div class="quiz-question-title" id="question-title">题目加载中...</div>
+                    <ul class="quiz-options-list" id="options-container">
+                        <!-- 动态渲染选项 -->
+                    </ul>
+                </div>
+
+                <!-- 答题反馈盒 -->
+                <div class="quiz-feedback-box" id="feedback-box">
+                    <div class="quiz-feedback-status" id="feedback-status">回答正确</div>
+                    <div class="quiz-feedback-text" id="feedback-text">这里是解析...</div>
+                </div>
+
+                <!-- 动作条 -->
+                <div class="quiz-action-bar">
+                    <button class="btn-outline-gray" id="prev-btn" onclick="prevQuestion()" style="display: none;">上一题</button>
+                    <button class="btn-primary-red" id="submit-btn" onclick="submitAnswer()" disabled>提交答案</button>
+                    <button class="btn-primary-red" id="next-btn" onclick="nextQuestion()" style="display: none;">下一题</button>
+                </div>
+            </div>
+
+            <!-- 完成结算面板 -->
+            <div id="quiz-result-area" style="display: none; text-align: center; padding: 40px 0;">
+                <svg viewBox="0 0 24 24" style="width: 80px; height: 80px; fill: #319795; margin-bottom: 20px;">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 10px;">答题挑战完成！</h3>
+                <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px;" id="result-score-text">您本次答对了 0 道题</p>
+                <div style="display: flex; gap: 15px; justify-content: center;">
+                    <button class="btn-outline-gray" onclick="restartQuiz()">重新挑战</button>
+                    <button class="btn-primary-red" onclick="goBack()">返回平台</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="site-footer" style="margin-top: 80px; padding: 30px 0 20px 0;">
+        <div class="container" style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+            <p>&copy; 2026 中国农业大学“耘思”大思政平台 - 在线每日答题</p>
+        </div>
+    </footer>
+
+    <!-- 载入数据库 -->
+    <script src="data/quiz.js"></script>
+
+    <script>
+        // 智能回退
+        function goBack() {
+            const referrer = document.referrer;
+            if (referrer && (referrer.includes('main_admin') || referrer.includes('main_faculty') || referrer.includes('main_student'))) {
+                window.location.href = referrer;
+            } else {
+                window.history.back();
+            }
+        }
+
+        let currentIndex = 0;
+        let selectedOption = null;
+        let score = 0;
+        let hasSubmitted = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initQuiz();
+        });
+
+        function initQuiz() {
+            if (!window.quizData || window.quizData.length === 0) {
+                document.getElementById('quiz-content-area').innerHTML = `
+                    <div style="text-align:center; padding: 40px 0; color: var(--text-muted);">
+                        <svg viewBox="0 0 24 24" style="width: 48px; height: 48px; fill: #cbd5e1; margin-bottom: 15px;">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                        </svg>
+                        <p style="font-size:1.1rem; font-weight:600;">暂无题库数据</p>
+                        <span style="font-size:0.9rem;">题目正在录入中，敬请期待。</span>
+                    </div>
+                `;
+                document.getElementById('progress-badge').textContent = '暂无题库';
+                return;
+            }
+            loadQuestion(0);
+        }
+
+        function loadQuestion(index) {
+            currentIndex = index;
+            selectedOption = null;
+            hasSubmitted = false;
+
+            const q = window.quizData[index];
+            document.getElementById('progress-badge').textContent = `第 ${index + 1} / ${window.quizData.length} 题`;
+            document.getElementById('question-title').textContent = `${index + 1}. ${q.question}`;
+
+            const optionsContainer = document.getElementById('options-container');
+            let html = '';
+            q.options.forEach((opt, idx) => {
+                html += `<li class="quiz-option-item" onclick="selectOption(${idx})" id="opt-${idx}">${opt}</li>`;
+            });
+            optionsContainer.innerHTML = html;
+
+            // 重置按钮和反馈框
+            document.getElementById('submit-btn').style.display = 'block';
+            document.getElementById('submit-btn').disabled = true;
+            document.getElementById('next-btn').style.display = 'none';
+            document.getElementById('feedback-box').style.display = 'none';
+        }
+
+        function selectOption(index) {
+            if (hasSubmitted) return;
+
+            selectedOption = index;
+            const items = document.querySelectorAll('.quiz-option-item');
+            items.forEach((item, idx) => {
+                if (idx === index) {
+                    item.classList.add('selected');
+                } else {
+                    item.classList.remove('selected');
+                }
+            });
+            document.getElementById('submit-btn').disabled = false;
+        }
+
+        function submitAnswer() {
+            if (selectedOption === null || hasSubmitted) return;
+            hasSubmitted = true;
+
+            const q = window.quizData[currentIndex];
+            const isCorrect = selectedOption === q.answer;
+            
+            const selectedEl = document.getElementById(`opt-${selectedOption}`);
+            const correctEl = document.getElementById(`opt-${q.answer}`);
+
+            if (isCorrect) {
+                score++;
+                selectedEl.className = 'quiz-option-item correct';
+                showFeedback(true, q.analysis);
+            } else {
+                selectedEl.className = 'quiz-option-item wrong';
+                correctEl.className = 'quiz-option-item correct';
+                showFeedback(false, q.analysis);
+            }
+
+            document.getElementById('submit-btn').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'block';
+        }
+
+        function showFeedback(isCorrect, analysis) {
+            const feedbackBox = document.getElementById('feedback-box');
+            const statusEl = document.getElementById('feedback-status');
+            const textEl = document.getElementById('feedback-text');
+
+            if (isCorrect) {
+                statusEl.textContent = '✓ 回答正确';
+                statusEl.className = 'quiz-feedback-status success';
+            } else {
+                statusEl.textContent = '✗ 回答错误';
+                statusEl.className = 'quiz-feedback-status fail';
+            }
+            textEl.innerHTML = `<strong>解析：</strong>${analysis}`;
+            feedbackBox.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            if (currentIndex + 1 < window.quizData.length) {
+                loadQuestion(currentIndex + 1);
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('quiz-content-area').style.display = 'none';
+            document.getElementById('quiz-result-area').style.display = 'block';
+            document.getElementById('progress-badge').textContent = '挑战结束';
+            document.getElementById('result-score-text').innerHTML = `答题结束！本次测试共 ${window.quizData.length} 题，您答对了 <strong style="color:var(--primary-red); font-size:1.4rem;">${score}</strong> 道题。`;
+        }
+
+        function restartQuiz() {
+            score = 0;
+            document.getElementById('quiz-content-area').style.display = 'block';
+            document.getElementById('quiz-result-area').style.display = 'none';
+            loadQuestion(0);
+        }
+    </script>
+
+</body>
+</html>

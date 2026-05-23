@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>更多内容列表 - 中国农业大学“耘思”大思政平台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .more-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .back-btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-red);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 25px;
+            transition: all 0.3s;
+        }
+        .back-btn-link:hover {
+            transform: translateX(-5px);
+            color: var(--deep-red);
+        }
+        .list-card {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+            padding: 40px;
+        }
+        .list-header {
+            border-bottom: 2px solid var(--primary-red);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .list-header h2 {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            font-weight: 800;
+            margin: 0;
+        }
+        .list-header .subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 5px;
+        }
+        .list-ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .list-li {
+            padding: 20px 0;
+            border-bottom: 1px dashed #e2e8f0;
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 20px;
+            align-items: center;
+            transition: all 0.2s;
+        }
+        .list-li:hover {
+            background-color: var(--primary-red-light);
+            padding-left: 10px;
+            border-radius: 6px;
+        }
+        .list-li-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #333333;
+            text-decoration: none;
+            transition: color 0.3s;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .list-li-title:hover {
+            color: var(--primary-red);
+        }
+        .list-li-source {
+            font-size: 0.88rem;
+            color: #e57373;
+            background: #ffebee;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .list-li-date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            min-width: 80px;
+            text-align: right;
+        }
+        .empty-tip {
+            text-align: center;
+            padding: 60px 0;
+            color: var(--text-muted);
+        }
+        .empty-tip svg {
+            width: 48px;
+            height: 48px;
+            fill: #cbd5e1;
+            margin-bottom: 15px;
+        }
+        .empty-tip p {
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶栏保留LOGO和返回链接 -->
+    <header class="main-header" style="padding: 15px 0; background: #ffffff; border-bottom: 1px solid #eaeaea; box-shadow: none;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="header-logo-area">
+                <div class="logo-circle" style="background: #a61e22; width: 40px; height: 40px;">
+                    <svg viewBox="0 0 24 24" style="fill: #ffffff">
+                        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+                        <path d="M19 12.35l-7 3.82-7-3.82V17l7 3.82 7-3.82v-4.65z"/>
+                    </svg>
+                </div>
+                <div class="header-text-group">
+                    <h1 class="platform-logo-title" style="color: #333333; font-size: 1.4rem;">中国农业大学“耘思”大思政平台</h1>
+                </div>
+            </div>
+            <div>
+                <a href="javascript:goBack()" style="background: #a61e22; color: #ffffff; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: 600;">
+                    返回平台
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="more-container">
+        <!-- 返回面包屑 -->
+        <a href="javascript:goBack()" class="back-btn-link">
+            <svg style="width: 18px; height: 18px; fill: currentColor;" viewBox="0 0 24 24">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+            返回上一页
+        </a>
+
+        <!-- 列表卡片 -->
+        <div class="list-card">
+            <div class="list-header">
+                <div>
+                    <h2 id="page-title">数据加载中...</h2>
+                    <div class="subtitle" id="page-subtitle">展示当前库的剩余文章与资料内容</div>
+                </div>
+                <span style="font-size: 0.85rem; color: #999;">⚠️ 提示：只展示文字与外部链接</span>
+            </div>
+
+            <!-- 文章列表 -->
+            <ul class="list-ul" id="detail-list">
+                <!-- 由 JavaScript 动态渲染 -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="site-footer" style="margin-top: 80px; padding: 30px 0 20px 0;">
+        <div class="container" style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+            <p>&copy; 2026 中国农业大学“耘思”大思政平台 - 板块内容详情列表</p>
+        </div>
+    </footer>
+
+    <!-- 载入四大板块公用数据源 -->
+    <script src="data/theory.js"></script>
+    <script src="data/agriculture.js"></script>
+    <script src="data/practice.js"></script>
+    <script src="data/campus.js"></script>
+
+    <script>
+        // 智能回退函数：优先回到来源大平台页，若无来源则回到引导选择页
+        function goBack() {
+            const referrer = document.referrer;
+            if (referrer && (referrer.includes('main_admin') || referrer.includes('main_faculty') || referrer.includes('main_student'))) {
+                window.location.href = referrer;
+            } else {
+                window.history.back();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 解析 URL 参数获取类型
+            const params = new URLSearchParams(window.location.search);
+            const type = params.get('type') || 'theory';
+
+            const pageTitleEl = document.getElementById('page-title');
+            const listContainer = document.getElementById('detail-list');
+
+            if (!listContainer) return;
+
+            let newsList = [];
+            let moduleName = "";
+
+            // 识别分类与对应数据
+            switch (type) {
+                case 'theory':
+                    newsList = window.theoryData || [];
+                    moduleName = "理论学习";
+                    break;
+                case 'agriculture':
+                    newsList = window.agricultureData || [];
+                    moduleName = "强农兴农";
+                    break;
+                case 'practice':
+                    newsList = window.practiceData || [];
+                    moduleName = "思政育人";
+                    break;
+                case 'campus':
+                    newsList = window.campusData || [];
+                    moduleName = "校园动态";
+                    break;
+                default:
+                    newsList = [];
+                    moduleName = "未知版块";
+            }
+
+            pageTitleEl.textContent = `${moduleName} - 剩余文章列表`;
+
+            // 截取第 5 条后面的剩余内容（slice(5) 获取索引 5 也就是第 6 条之后的所有数据）
+            const remainingNews = newsList.slice(5);
+
+            if (remainingNews.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="empty-tip">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/>
+                        </svg>
+                        <p>该板块下暂无更多剩余内容。</p>
+                        <span style="font-size: 0.85rem; color:#a0aec0; margin-top:5px; display:inline-block;">（首页展示的前 5 条已是全部数据）</span>
+                    </div>
+                `;
+                return;
+            }
+
+            // 渲染剩余文章 (不放图片，仅文字列表和跳转超链接)
+            let html = '';
+            remainingNews.forEach(item => {
+                const targetUrl = item.url && item.url !== '#' ? item.url : '#';
+                const dateStr = item.date || '暂无日期';
+                
+                html += `
+                    <li class="list-li">
+                        <a href="${targetUrl}" target="_blank" class="list-li-title" title="${item.title}">${item.title}</a>
+                        <span class="list-li-source">${item.source}</span>
+                        <span class="list-li-date">${dateStr}</span>
+                    </li>
+                `;
+            });
+            listContainer.innerHTML = html;
+        });
+    </script>
+
+</body>
+</html>

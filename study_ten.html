@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日十分钟 - 中国农业大学“耘思”大思政平台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 理论精读专区卡片美化样式 */
+        .reading-header-banner {
+            background: linear-gradient(135deg, #a61e22 0%, #7d1215 100%);
+            border-radius: 12px;
+            padding: 30px;
+            color: #ffffff;
+            margin-bottom: 35px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(166, 30, 34, 0.15);
+        }
+        .reading-banner-watermark {
+            position: absolute;
+            right: -20px;
+            bottom: -20px;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+        .reading-banner-content {
+            position: relative;
+            z-index: 2;
+        }
+        .reading-banner-tag {
+            background: rgba(255, 215, 0, 0.25);
+            color: #ffe875;
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .reading-banner-time-tip {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 10px;
+            display: inline-block;
+        }
+        .reading-banner-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+        .reading-banner-desc {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+            margin: 10px 0 0 0;
+            line-height: 1.6;
+            font-weight: 500;
+            max-width: 90%;
+        }
+
+        /* 列表项高级微调 */
+        .study-list-li {
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 12px !important;
+            padding: 24px 28px !important;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.01) !important;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+            margin-bottom: 18px;
+            background-color: #ffffff !important;
+        }
+        .study-list-li:hover {
+            border-color: rgba(166, 30, 34, 0.35) !important;
+            background-color: #fcf9f9 !important;
+            transform: translateY(-3px) translateX(2px) !important;
+            box-shadow: 0 10px 20px rgba(166, 30, 34, 0.06) !important;
+        }
+        .study-li-title {
+            font-size: 1.15rem !important;
+            color: #2d3748 !important;
+            font-weight: 700 !important;
+            line-height: 1.5 !important;
+            margin-bottom: 8px !important;
+        }
+        .study-li-title:hover {
+            color: var(--primary-red) !important;
+        }
+        .study-li-source {
+            background-color: #f7fafc !important;
+            color: #718096 !important;
+            border: 1px solid #e2e8f0 !important;
+            padding: 2px 10px !important;
+            border-radius: 6px !important;
+            font-size: 0.8rem !important;
+            font-weight: 600 !important;
+        }
+        .study-li-desc {
+            font-size: 0.9rem !important;
+            color: #4a5568 !important;
+            margin-top: 12px !important;
+            line-height: 1.6 !important;
+        }
+        .study-li-time-badge {
+            background-color: #fff9e6;
+            color: #d97706;
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            border: 1px solid rgba(217, 119, 6, 0.15);
+        }
+    </style>
+</head>
+<body style="background-color: #f7fafc;">
+
+    <!-- 顶栏 -->
+    <header class="main-header" style="padding: 15px 0; background: #ffffff; border-bottom: 1px solid #eaeaea; box-shadow: none;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="header-logo-area">
+                <div class="logo-circle" style="background: #a61e22; width: 40px; height: 40px;">
+                    <svg viewBox="0 0 24 24" style="fill: #ffffff">
+                        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+                        <path d="M19 12.35l-7 3.82-7-3.82V17l7 3.82 7-3.82v-4.65z"/>
+                    </svg>
+                </div>
+                <div class="header-text-group">
+                    <h1 class="platform-logo-title" style="color: #333333; font-size: 1.4rem;">中国农业大学“耘思”大思政平台</h1>
+                </div>
+            </div>
+            <div>
+                <a href="javascript:goBack()" style="background: #a61e22; color: #ffffff; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: 600;">
+                    返回平台
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="quiz-container">
+        <!-- 返回面包屑 -->
+        <a href="javascript:goBack()" class="back-btn-link" style="display: inline-flex; align-items: center; gap: 8px; color: var(--primary-red); text-decoration: none; font-weight: 600; margin-bottom: 25px; transition: all 0.3s;">
+            <svg style="width: 18px; height: 18px; fill: currentColor;" viewBox="0 0 24 24">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+            返回上一页
+        </a>
+
+        <!-- 每日十分钟主卡片 -->
+        <div class="learning-card" style="padding: 35px 40px;">
+            
+            <!-- 理论精读区头部横幅（美化后代替原卡片标题） -->
+            <div class="reading-header-banner">
+                <!-- 背景装饰图案 -->
+                <div class="reading-banner-watermark">
+                    <svg viewBox="0 0 24 24" style="width: 180px; height: 180px; fill: #ffffff;">
+                        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+                        <path d="M19 12.35l-7 3.82-7-3.82V17l7 3.82 7-3.82v-4.65z"/>
+                    </svg>
+                </div>
+                
+                <div class="reading-banner-content">
+                    <div>
+                        <span class="reading-banner-tag">推荐精读</span>
+                        <span class="reading-banner-time-tip">⏱️ 建议每日阅读 10 分钟</span>
+                    </div>
+                    <h2 class="reading-banner-title">“每日十分钟”理论精读专区</h2>
+                    <p class="reading-banner-desc">厚植知农爱农情怀，汇聚强农兴农力量。开展定制化大思政理论学习与国家政策精读。</p>
+                </div>
+            </div>
+
+            <!-- 学习材料列表模块 -->
+            <div class="study-materials-section">
+                <h3 style="font-weight: 800;">专区推荐精读文章</h3>
+                <div id="materials-list-container">
+                    <div style="text-align: center; padding: 20px; color: var(--text-muted);">
+                        正在载入推荐学习文章...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="site-footer" style="margin-top: 80px; padding: 30px 0 20px 0;">
+        <div class="container" style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+            <p>&copy; 2026 中国农业大学“耘思”大思政平台 - 在线每日十分钟</p>
+        </div>
+    </footer>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get('role') || 'student';
+        
+        // 角色映射表
+        const roleNames = {
+            'admin': '管理员',
+            'faculty': '教职工',
+            'student': '学生'
+        };
+        const roleName = roleNames[role] || '学生';
+        
+        // 智能回退
+        function goBack() {
+            const referrer = document.referrer;
+            if (referrer && (referrer.includes('main_admin') || referrer.includes('main_faculty') || referrer.includes('main_student'))) {
+                window.location.href = referrer;
+            } else {
+                window.location.href = `main_${role}.html`;
+            }
+        }
+
+        // 动态加载对应数据库文件
+        const script = document.createElement('script');
+        script.src = `data/study_ten_${role}.js`;
+        script.onload = () => {
+            renderMaterials();
+        };
+        script.onerror = () => {
+            document.getElementById('materials-list-container').innerHTML = `
+                <div style="text-align:center; padding: 30px; color: var(--text-muted);">
+                    <p style="font-weight: 600;">无法加载该角色的学习数据</p>
+                    <span>请确认 data/study_ten_${role}.js 存在。</span>
+                </div>
+            `;
+        };
+        document.head.appendChild(script);
+
+        // 渲染精读材料
+        function renderMaterials() {
+            const container = document.getElementById('materials-list-container');
+            const data = window.studyTenData || [];
+            
+            if (data.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding: 30px; color: var(--text-muted);">
+                        <p style="font-weight: 600;">暂无推荐学习资料</p>
+                        <span>请等待管理员录入。</span>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '<ul class="study-list-ul">';
+            data.forEach(item => {
+                html += `
+                    <li class="study-list-li">
+                        <div class="study-li-info">
+                            <a href="${item.url}" target="_blank" class="study-li-title">${item.title}</a>
+                            <div class="study-li-meta">
+                                <span class="study-li-source">${item.source}</span>
+                                <span>发布日期: ${item.date}</span>
+                                <span class="study-li-time-badge">⏱️ 建议精读: 3分钟</span>
+                            </div>
+                            <p class="study-li-desc">${item.description}</p>
+                        </div>
+                        <a href="${item.url}" target="_blank" class="study-link-arrow" title="立即阅读">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                            </svg>
+                        </a>
+                    </li>
+                `;
+            });
+            html += '</ul>';
+            container.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
