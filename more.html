@@ -180,12 +180,7 @@
         </div>
     </footer>
 
-    <!-- 载入四大板块公用数据源 -->
-    <script src="data/theory.js"></script>
-    <script src="data/agriculture.js?v=1.1"></script>
-    <script src="data/practice.js"></script>
-    <script src="data/campus.js"></script>
-
+    <!-- 优化：改为通过 JS 动态按需载入数据文件，避免一次性加载所有 JSON 数据 -->
     <script>
         // 智能回退函数：优先回到来源大平台页，若无来源则回到引导选择页
         function goBack() {
@@ -207,78 +202,101 @@
 
             if (!listContainer) return;
 
-            let newsList = [];
-            let moduleName = "";
+            // 数据路径映射
+            const dataScripts = {
+                'theory': 'data/theory.js',
+                'agriculture': 'data/agriculture.js?v=1.1',
+                'practice': 'data/practice.js',
+                'campus': 'data/campus.js'
+            };
 
-            // 识别分类与对应数据
-            switch (type) {
-                case 'theory':
-                    newsList = window.theoryData || [];
-                    moduleName = "理论学习";
-                    break;
-                case 'agriculture':
-                    newsList = window.agricultureData || [];
-                    moduleName = "强农兴农";
-                    break;
-                case 'practice':
-                    newsList = window.practiceData || [];
-                    moduleName = "思政育人";
-                    break;
-                case 'campus':
-                    newsList = window.campusData || [];
-                    moduleName = "校园动态";
-                    break;
-                default:
-                    newsList = [];
-                    moduleName = "未知版块";
-            }
+            const scriptUrl = dataScripts[type] || 'data/theory.js';
 
-            pageTitleEl.textContent = `${moduleName} - 剩余文章列表`;
+            // 动态创建并加载对应分类的单个 JS 数据源文件
+            const script = document.createElement('script');
+            script.src = scriptUrl;
+            script.onload = () => {
+                let newsList = [];
+                let moduleName = "";
 
-            if (newsList.length === 0) {
+                // 识别分类与对应数据
+                switch (type) {
+                    case 'theory':
+                        newsList = window.theoryData || [];
+                        moduleName = "理论学习";
+                        break;
+                    case 'agriculture':
+                        newsList = window.agricultureData || [];
+                        moduleName = "强农兴农";
+                        break;
+                    case 'practice':
+                        newsList = window.practiceData || [];
+                        moduleName = "思政育人";
+                        break;
+                    case 'campus':
+                        newsList = window.campusData || [];
+                        moduleName = "校园动态";
+                        break;
+                    default:
+                        newsList = [];
+                        moduleName = "未知版块";
+                }
+
+                pageTitleEl.textContent = `${moduleName} - 剩余文章列表`;
+
+                if (newsList.length === 0) {
+                    listContainer.innerHTML = `
+                        <div class="empty-tip">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/>
+                            </svg>
+                            <p>该板块下暂无文章数据。</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // 截取第 5 条后面的剩余内容（slice(5) 获取索引 5 也就是第 6 条之后的所有数据）
+                const remainingNews = newsList.slice(5);
+
+                if (remainingNews.length === 0) {
+                    listContainer.innerHTML = `
+                        <div class="empty-tip">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/>
+                            </svg>
+                            <p>该板块下暂无更多剩余内容。</p>
+                            <span style="font-size: 0.85rem; color:#a0aec0; margin-top:5px; display:inline-block;">（首页展示的前 5 条已是全部数据）</span>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // 渲染剩余文章 (使用美化后的 card 与 序号标徽)
+                let html = '';
+                remainingNews.forEach((item, index) => {
+                    const targetUrl = item.url && item.url !== '#' ? item.url : '#';
+                    const dateStr = item.date || '暂无日期';
+                    
+                    html += `
+                        <li class="more-list-item">
+                            <span class="more-list-item-index">${index + 1}</span>
+                            <a href="${targetUrl}" target="_blank" class="list-li-title" title="${item.title}" style="font-weight: 700; color: var(--text-main); font-size: 1.05rem;">${item.title}</a>
+                            <span class="list-li-source" style="background-color: var(--primary-red-light); color: var(--primary-red); border: 1px solid var(--primary-red-border); padding: 3px 10px; border-radius: 4px; font-weight: 600; font-size: 0.85rem;">${item.source || '本站'}</span>
+                            <span class="list-li-date" style="color: var(--text-muted); font-size: 0.9rem; font-weight: 500;">${dateStr}</span>
+                        </li>
+                    `;
+                });
+                listContainer.innerHTML = html;
+            };
+            script.onerror = () => {
                 listContainer.innerHTML = `
                     <div class="empty-tip">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/>
-                        </svg>
-                        <p>该板块下暂无文章数据。</p>
+                        <p style="color: var(--primary-red);">无法加载该版块的数据，请确认对应的静态数据文件存在。</p>
                     </div>
                 `;
-                return;
-            }
-
-            // 截取第 5 条后面的剩余内容（slice(5) 获取索引 5 也就是第 6 条之后的所有数据）
-            const remainingNews = newsList.slice(5);
-
-            if (remainingNews.length === 0) {
-                listContainer.innerHTML = `
-                    <div class="empty-tip">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/>
-                        </svg>
-                        <p>该板块下暂无更多剩余内容。</p>
-                        <span style="font-size: 0.85rem; color:#a0aec0; margin-top:5px; display:inline-block;">（首页展示的前 5 条已是全部数据）</span>
-                    </div>
-                `;
-                return;
-            }
-
-            // 渲染剩余文章 (使用美化后的 card 与 序号标徽)
-            let html = '';
-            remainingNews.forEach((item, index) => {
-                const targetUrl = item.url && item.url !== '#' ? item.url : '#';
-                const dateStr = item.date || '暂无日期';
-                
-                html += `
-                    <li class="more-list-item">
-                        <span class="more-list-item-index">${index + 1}</span>
-                        <a href="${targetUrl}" target="_blank" class="list-li-title" title="${item.title}" style="font-weight: 700; color: var(--text-main); font-size: 1.05rem;">${item.title}</a>
-                        <span class="list-li-source" style="background-color: var(--primary-red-light); color: var(--primary-red); border: 1px solid var(--primary-red-border); padding: 3px 10px; border-radius: 4px; font-weight: 600; font-size: 0.85rem;">${item.source || '本站'}</span>
-                        <span class="list-li-date" style="color: var(--text-muted); font-size: 0.9rem; font-weight: 500;">${dateStr}</span>
-                    </li>
-                `;
-            });
-            listContainer.innerHTML = html;
+            };
+            document.head.appendChild(script);
         });
     </script>
 
